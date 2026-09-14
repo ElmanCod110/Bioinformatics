@@ -1,0 +1,300 @@
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1         -7.5      0.000      0.000
+   2         -7.5      3.302      8.240
+   3         -7.4      4.185      6.808
+   4         -7.3      4.130      6.737
+   5         -7.2      1.840      7.070
+   6         -7.2      1.598      3.092
+   7         -7.1      4.859      9.773
+   8         -7.1      3.329      7.983
+   9         -7.1      4.171      6.620
+  10         -7.0      3.040      5.344
+Writing output ... done.
+
+C:\Users\ramin\Desktop\Docking>"C:\Program Files (x86)\The Scripps Research Inst
+itute\Vina\vina.exe" ^
+More? --receptor "items\Proteins\PG1-O00094\receptor.pdbqt" ^
+More? --ligand "items\Ligands\pdbqt structure\phlorizin.pdbqt" ^
+More? --center_x -9.25 ^
+More? --center_y -0.10 ^
+More? --center_z 42.01 ^
+More? --size_x 20 ^
+More? --size_y 18 ^
+More? --size_z 22 ^
+More? --exhaustiveness 16 ^
+More? --num_modes 10 ^
+More? --energy_range 4 ^
+More? --out "train\results\third train\phlorizin_result.pdbqt" ^
+More?
+More?
+Command line parse error: too many positional options
+
+Correct usage:
+
+Input:
+  --receptor arg        rigid part of the receptor (PDBQT)
+  --flex arg            flexible side chains, if any (PDBQT)
+  --ligand arg          ligand (PDBQT)
+
+Search space (required):
+  --center_x arg        X coordinate of the center
+  --center_y arg        Y coordinate of the center
+  --center_z arg        Z coordinate of the center
+  --size_x arg          size in the X dimension (Angstroms)
+  --size_y arg          size in the Y dimension (Angstroms)
+  --size_z arg          size in the Z dimension (Angstroms)
+
+Output (optional):
+  --out arg             output models (PDBQT), the default is chosen based on
+                        the ligand file name
+  --log arg             optionally, write log file
+
+Misc (optional):
+  --cpu arg                 the number of CPUs to use (the default is to try to
+                            detect the number of CPUs or, failing that, use 1)
+  --seed arg                explicit random seed
+  --exhaustiveness arg (=8) exhaustiveness of the global search (roughly
+                            proportional to time): 1+
+  --num_modes arg (=9)      maximum number of binding modes to generate
+  --energy_range arg (=3)   maximum energy difference between the best binding
+                            mode and the worst one displayed (kcal/mol)
+
+Configuration file (optional):
+  --config arg          the above options can be put here
+
+Information (optional):
+  --help                display usage summary
+  --help_advanced       display usage summary with advanced options
+  --version             display program version
+
+
+C:\Users\ramin\Desktop\Docking>
+C:\Users\ramin\Desktop\Docking>
+C:\Users\ramin\Desktop\Docking>mkdir "train\results\third train"
+
+C:\Users\ramin\Desktop\Docking>now we go to do it with floridzin
+'now' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\ramin\Desktop\Docking>"C:\Program Files (x86)\The Scripps Research Inst
+itute\Vina\vina.exe" ^
+More? --receptor "items\Proteins\PG1-O00094\receptor.pdbqt" ^
+More? --ligand "items\Ligands\pdbqt structure\phlorizin.pdbqt" ^
+More? --center_x -9.25 ^
+More? --center_y -0.10 ^
+More? --center_z 42.01 ^
+More? --size_x 20 ^
+More? --size_y 18 ^
+More? --size_z 22 ^
+More? --exhaustiveness 16 ^
+More? --num_modes 10 ^
+More? --energy_range 4 ^
+More? --out "train\results\third train\phlorizin_result.pdbqt" ^
+More? --log "train\results\third train\phlorizin.log"
+#################################################################
+# If you used AutoDock Vina in your work, please cite:          #
+#                                                               #
+# O. Trott, A. J. Olson,                                        #
+# AutoDock Vina: improving the speed and accuracy of docking    #
+# with a new scoring function, efficient optimization and       #
+# multithreading, Journal of Computational Chemistry 31 (2010)  #
+# 455-461                                                       #
+#                                                               #
+# DOI 10.1002/jcc.21334                                         #
+#                                                               #
+# Please see http://vina.scripps.edu for more information.      #
+#################################################################
+
+Detected 2 CPUs
+Reading input ...
+
+Error: could not open "items\Ligands\pdbqt structure\phlorizin.pdbqt" for readin
+g.
+
+C:\Users\ramin\Desktop\Docking>
+C:\Users\ramin\Desktop\Docking>"C:\Program Files (x86)\The Scripps Research Inst
+itute\Vina\vina.exe" ^
+More? --receptor "items\Proteins\PG1-O00094\receptor.pdbqt" ^
+More? --ligand "items\Ligands\pdbqt structure\phloridzin.pdbqt" ^
+More? --center_x -9.25 ^
+More? --center_y -0.10 ^
+More? --center_z 42.01 ^
+More? --size_x 20 ^
+More? --size_y 18 ^
+More? --size_z 22 ^
+More? --exhaustiveness 16 ^
+More? --num_modes 10 ^
+More? --energy_range 4 ^
+More? --out "train\results\third train\phlorizin_result.pdbqt" ^
+More? --log "train\results\third train\phlorizin.log"
+#################################################################
+# If you used AutoDock Vina in your work, please cite:          #
+#                                                               #
+# O. Trott, A. J. Olson,                                        #
+# AutoDock Vina: improving the speed and accuracy of docking    #
+# with a new scoring function, efficient optimization and       #
+# multithreading, Journal of Computational Chemistry 31 (2010)  #
+# 455-461                                                       #
+#                                                               #
+# DOI 10.1002/jcc.21334                                         #
+#                                                               #
+# Please see http://vina.scripps.edu for more information.      #
+#################################################################
+
+Detected 2 CPUs
+Reading input ... done.
+Setting up the scoring function ... done.
+Analyzing the binding site ... done.
+Using random seed: -1847717396
+Performing search ...
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+done.
+Refining results ... done.
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1         -7.3      0.000      0.000
+   2         -7.1      2.005      5.940
+   3         -7.1      4.064      7.003
+   4         -7.1      1.942      4.670
+   5         -7.1      4.068      6.107
+   6         -7.1      3.695      7.343
+   7         -7.1      2.698      5.091
+   8         -7.1      2.226      5.853
+   9         -7.0      3.309      7.507
+  10         -6.8      3.715      6.088
+Writing output ... done.
+
+C:\Users\ramin\Desktop\Docking>jjj
+'jjj' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\ramin\Desktop\Docking>mkdir "train\results\forth train"
+
+C:\Users\ramin\Desktop\Docking>now we go to do it with chlorogenic acid
+'now' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\ramin\Desktop\Docking>"C:\Program Files (x86)\The Scripps Research Inst
+itute\Vina\vina.exe" ^
+More? --receptor "items\Proteins\PG1-O00094\receptor.pdbqt" ^
+More? --ligand "items\Ligands\pdbqt structure\chlorogenic_acid.pdbqt" ^
+More? --center_x -9.25 ^
+More? --center_y -0.10 ^
+More? --center_z 42.01 ^
+More? --size_x 20 ^
+More? --size_y 18 ^
+More? --size_z 22 ^
+More? --exhaustiveness 16 ^
+More? --num_modes 10 ^
+More? --energy_range 4 ^
+More? --out "train\results\forth train\chlorogenic_acid_result.pdbqt" ^ --log "t
+rain\results\forth train\chlorogenic_acid.log"
+#################################################################
+# If you used AutoDock Vina in your work, please cite:          #
+#                                                               #
+# O. Trott, A. J. Olson,                                        #
+# AutoDock Vina: improving the speed and accuracy of docking    #
+# with a new scoring function, efficient optimization and       #
+# multithreading, Journal of Computational Chemistry 31 (2010)  #
+# 455-461                                                       #
+#                                                               #
+# DOI 10.1002/jcc.21334                                         #
+#                                                               #
+# Please see http://vina.scripps.edu for more information.      #
+#################################################################
+
+Detected 2 CPUs
+Reading input ... done.
+Setting up the scoring function ... done.
+Analyzing the binding site ... done.
+Using random seed: 1636496704
+Performing search ...
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+done.
+Refining results ... done.
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1         -7.7      0.000      0.000
+   2         -7.7      1.621      2.359
+   3         -7.4      1.855      8.539
+   4         -7.2      2.219      8.505
+   5         -7.2      1.409      2.833
+   6         -7.1      1.750      3.612
+   7         -7.1      2.355      4.029
+   8         -7.0      1.582      2.436
+   9         -7.0      1.806      7.729
+  10         -7.0      2.019      3.399
+Writing output ... done.
+
+C:\Users\ramin\Desktop\Docking>mkdir "train\results\fivth train"
+
+C:\Users\ramin\Desktop\Docking>now we go to do it with procyanidin B2
+'now' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\ramin\Desktop\Docking>"C:\Program Files (x86)\The Scripps Research Inst
+itute\Vina\vina.exe" ^
+More? --receptor "items\Proteins\PG1-O00094\receptor.pdbqt" ^
+More? --ligand "items\Ligands\pdbqt structure\procyanidin_B2.pdbqt" ^
+More? --center_x -9.25 ^
+More? --center_y -0.10 ^
+More? --center_z 42.01 ^
+More? --size_x 20 ^
+More? --size_y 18 ^
+More? --size_z 22 ^
+More? --exhaustiveness 16 ^
+More? --num_modes 10 ^
+More? --energy_range 4 ^
+More? --out "train\results\fivth train\procyanidin_B2_result.pdbqt" ^
+More? --log "train\results\fivth train\procyanidin_B2.log"
+#################################################################
+# If you used AutoDock Vina in your work, please cite:          #
+#                                                               #
+# O. Trott, A. J. Olson,                                        #
+# AutoDock Vina: improving the speed and accuracy of docking    #
+# with a new scoring function, efficient optimization and       #
+# multithreading, Journal of Computational Chemistry 31 (2010)  #
+# 455-461                                                       #
+#                                                               #
+# DOI 10.1002/jcc.21334                                         #
+#                                                               #
+# Please see http://vina.scripps.edu for more information.      #
+#################################################################
+
+Detected 2 CPUs
+Reading input ... done.
+Setting up the scoring function ... done.
+Analyzing the binding site ... done.
+Using random seed: -312092488
+Performing search ...
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+done.
+Refining results ... done.
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1         -7.6      0.000      0.000
+   2         -7.2      2.450      6.936
+   3         -7.2      1.510      1.987
+   4         -6.3      2.479      7.106
+   5         -6.3      2.648      8.467
+   6         -6.2      2.761      7.422
+   7         -5.7      2.497      5.075
+   8         -5.6      1.907      2.390
+   9         -5.6      2.381      3.247
+  10         -5.5      4.166      9.044
+Writing output ... done.
+
+C:\Users\ramin\Desktop\Docking>
