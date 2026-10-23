@@ -1,0 +1,11 @@
+Docking 1:
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PGX6-AF-A0A0J9W3A4-F1\PGX6_final.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\chlorogenic_acid.pdbqt" --center_x 5.35 --center_y 3.77 --center_z -4.26 --size_x 20 --size_y 20 --size_z 18 --exhaustiveness 16 --num_modes 20 --out "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\third dock\PGX6_chlorogenic_acid_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\third dock\PGX6_chlorogenic_acid.log"
+
+Docking 2:
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PGX6-AF-A0A0J9W3A4-F1\PGX6_final.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\phloridzin.pdbqt" --center_x 5.35 --center_y 3.77 --center_z -4.26 --size_x 20 --size_y 20 --size_z 18 --exhaustiveness 16 --num_modes 20 --out "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\second dock\PGX6_phloridzin_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\second dock\PGX6_phloridzin.log"
+
+Docking 3:
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PGX6-AF-A0A0J9W3A4-F1\PGX6_final.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\procyanidin_B2.pdbqt" --center_x 5.35 --center_y 3.77 --center_z -4.26 --size_x 20 --size_y 20 --size_z 18 --exhaustiveness 16 --num_modes 20 --out "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\forth dock\PGX6_procyanidin_B2.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\forth dock\PGX6_procyanidin_B2.log"
+
+Docking 4:
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PGX6-AF-A0A0J9W3A4-F1\PGX6_final.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\quercetin.pdbqt" --center_x 5.35 --center_y 3.77 --center_z -4.26 --size_x 20 --size_y 20 --size_z 18 --exhaustiveness 16 --num_modes 20 --out "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\first dock\PGX6_quercetin_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\first dock\PGX6_quercetin.log"

@@ -1,0 +1,3323 @@
+# گزارش جامع روند اجرای بخش بیوانفورماتیک و Molecular Docking
+
+## عنوان پروژه
+
+**Bioinformatic and Laboratory Study of Bioactive Compounds Extracted from East Azerbaijan Apple Waste as Potential Inhibitors of Polygalacturonase Enzymes in Fusarium spp.**
+
+### مسئول بخش بیوانفورماتیک
+
+**ایلمان محمدی**
+
+### چارچوب کلی پروژه
+
+هدف بخش بیوانفورماتیک پروژه این بود که از میان ترکیبات زیست‌فعال موجود در سیب و پسماند سیب، چند مولکول مناسب انتخاب شود و سپس با استفاده از روش **Molecular Docking** بررسی شود که آیا این ترکیبات می‌توانند با آنزیم‌های **Polygalacturonase (PG)** قارچ *Fusarium oxysporum* برهم‌کنش مطلوبی داشته باشند یا خیر.
+
+از ابتدا تأکید شد که پروژه باید تا حد امکان کم‌هزینه باشد و در یک بازه زمانی نسبتاً کوتاه انجام شود؛ بنابراین به‌جای وابستگی به خالص‌سازی دشوار و پرهزینه تک‌تک ترکیبات از عصاره سیب، مسیر محاسباتی به سمت استفاده از ساختارهای استاندارد ترکیبات و بررسی برهم‌کنش آن‌ها با Targetهای پروتئینی هدایت شد.
+
+نکته مهم این است که در تمام مراحل باید بین سه مفهوم تفاوت گذاشته شود:
+
+1. **وجود یک ترکیب در سیب یا Apple Pomace**
+2. **Docking آن ترکیب با یک Polygalacturonase**
+3. **اثبات آزمایشگاهی مهار Polygalacturonase**
+
+هیچ‌کدام از این سه مورد معادل دیگری نیستند. در پروژه، مرحله بیوانفورماتیک عمدتاً مورد دوم را بررسی می‌کند و برای مورد سوم به تأیید آزمایشگاهی نیاز است.
+
+---
+
+# 1. نقطه شروع پروژه و اولین برداشت از مسئله
+
+## 1.1. فرض اولیه درباره منشأ Target
+
+در ابتدای کار، مسئله از دیدگاه ساختاری هنوز کاملاً تفکیک نشده بود. چون عنوان پروژه درباره **bioactive compounds extracted from apple waste** بود، ابتدا این تصور ایجاد شد که شاید لازم باشد Targetهای Polygalacturonase نیز از خود گیاه، مثلاً از **سیب**، انتخاب شوند.
+
+در این برداشت اولیه، تصور این بود که:
+
+**apple → protein/PG → compounds**
+
+یعنی در ابتدا احتمال داده می‌شد که باید توالی‌های پروتئینی مرتبط با گیاه سیب پیدا شوند و سپس همان‌ها با ترکیبات موجود در سیب بررسی شوند.
+
+این برداشت بعداً اصلاح شد.
+
+## 1.2. اصلاح منطق زیستی پروژه
+
+پس از بازبینی علمی و مشورت فنی درباره ساختار صحیح مسئله، مشخص شد که منطق درست پروژه این است که:
+
+**Apple waste = source of ligands**
+
+و
+
+**Fusarium polygalacturonases = protein targets**
+
+در نتیجه، سیب و پسماند سیب منبع **لیگاند** هستند، نه اینکه لزوماً Target پروتئینی پروژه نیز از سیب باشد.
+
+این تغییر یکی از مهم‌ترین اصلاحات مفهومی کل پروژه بود.
+
+پس مسئله به شکل زیر بازتعریف شد:
+
+**Bioactive compounds from apple waste → candidate ligands**
+
+در مقابل:
+
+**Polygalacturonases from Fusarium → target proteins**
+
+و در مرحله Docking باید بررسی شود که آیا لیگاند‌های انتخاب‌شده می‌توانند با Targetهای قارچی برهم‌کنش مناسبی داشته باشند یا خیر.
+
+این تغییر باعث شد جست‌وجوی داده‌های پروتئینی از منابع گیاهی کنار گذاشته شود و جست‌وجو به سمت **Fusarium oxysporum** و بانک‌های عمومی مانند **NCBI و UniProt** برود.
+
+---
+
+# 2. مرحله اول تحقیق: شناسایی علمی خانواده Polygalacturonase
+
+در مرحله اول، برای اینکه مشخص شود کدام PGها اصلاً ارزش بررسی دارند، چند مقاله کلیدی بررسی شد.
+
+منابع محوری این مرحله شامل کارهای:
+
+* Di Pietro & Roncero
+* García-Maceira و همکاران
+* Ruiz و همکاران
+* Federici و همکاران
+* مطالعات مربوط به Apple Pomace و Polyphenols
+
+بود.
+
+یکی از مهم‌ترین منابع، مطالعه **Ruiz et al.** بود که مجموعه Polygalacturonaseهای *Fusarium oxysporum f. sp. lycopersici* را بررسی کرده بود.
+
+در این چارچوب مشخص شد که این قارچ مجموعه‌ای از **۸ Polygalacturonase** دارد که در دو گروه کلی قرار می‌گیرند:
+
+* Endopolygalacturonases
+* Exopolygalacturonases
+
+از میان آن‌ها چهار نام در پروژه بیشتر مورد توجه قرار گرفتند:
+
+* PG1
+* PG5
+* PGX4
+* PGX6
+
+این انتخاب به دلیل سابقه بیان آن‌ها در شرایط مرتبط با پکتین، عفونت و مطالعات بیماری‌زایی انجام شد.
+
+---
+
+# 3. بررسی اولیه اهمیت چهار Target
+
+## 3.1. PG1
+
+PG1 به‌عنوان یک:
+
+**Major extracellular endopolygalacturonase**
+
+شناخته شد.
+
+در مطالعات مرتبط با *Fusarium oxysporum f. sp. lycopersici*، PG1 به فرایندهای مربوط به عفونت و تجزیه پکتین ارتباط داشت.
+
+به همین دلیل PG1 به یکی از مهم‌ترین Targetهای پروژه تبدیل شد.
+
+---
+
+## 3.2. PGX6
+
+PGX6 به‌عنوان یک:
+
+**Exopolygalacturonase**
+
+در مجموعه PGهای *Fusarium oxysporum f. sp. lycopersici* شناسایی شد.
+
+یکی از نکات بسیار مهم این بود که در مطالعه Ruiz و همکاران، بیان PGX6 در شرایط مرتبط با عفونت مورد توجه بود و حذف همزمان PG1 و PGX6 با کاهش Virulence همراه بود.
+
+بنابراین از نظر فرضیه پروژه، PGX6 می‌توانست Target مهمی باشد.
+
+---
+
+## 3.3. PG5
+
+PG5 نیز یک:
+
+**Endopolygalacturonase**
+
+بود که در مراحل اولیه عفونت مورد مطالعه قرار گرفته بود.
+
+مقاله اصلی آن:
+
+**Molecular Characterization of an Endopolygalacturonase from Fusarium oxysporum Expressed during Early Stages of Infection**
+
+بود.
+
+PG5 به‌عنوان Target معتبر شناخته شد، ولی در مرحله اولیه نسبت به PG1 و PGX6 در اولویت پایین‌تری قرار گرفت.
+
+---
+
+## 3.4. PGX4
+
+PGX4 نیز یک:
+
+**Exopolygalacturonase**
+
+بود.
+
+مطالعه سال 2000 روی آن نشان می‌داد که ژن pgx4 در *F. oxysporum f. sp. lycopersici* وجود دارد، در شرایط خاص بیان می‌شود و در گیاه آلوده نیز Expression دارد.
+
+مطالعه اصلی همچنین نشان می‌داد که پروتئین کامل در آن مقاله حدود:
+
+**454 amino acids**
+
+بوده و Signal Peptide حدوداً در ابتدای پروتئین قرار داشته است.
+
+---
+
+# 4. یک نکته کلیدی درباره ارتباط PGها با سیب
+
+در همین مرحله یک خط قرمز علمی مهم مشخص شد.
+
+از اینکه یک مقاله می‌گوید:
+
+> PG1 یا PGX6 در Fusarium وجود دارد
+
+نمی‌توان نتیجه گرفت که:
+
+> این PG در سیب وجود دارد.
+
+همچنین از اینکه یک مقاله می‌گوید:
+
+> Phloridzin یا Quercetin در Apple Pomace وجود دارد
+
+نمی‌توان نتیجه گرفت:
+
+> این ماده مستقیماً PG1 یا PGX6 را مهار می‌کند.
+
+به همین دلیل ساختار منطقی پروژه به‌صورت زیر نهایی شد:
+
+**Literature evidence for PG target**
+
+*
+
+**Literature evidence for apple compound**
+
+→
+
+**Computational docking hypothesis**
+
+و نه:
+
+**Literature evidence → proven inhibition**
+
+---
+
+# 5. انتخاب لیگاندها
+
+در سمت Ligand، چهار ترکیب در نهایت مورد استفاده قرار گرفتند:
+
+### 1. Phloridzin / Phlorizin
+
+* PubChem CID: **6072**
+* Formula: **C21H24O10**
+* Molecular Weight: حدود **436.41 g/mol**
+
+### 2. Quercetin
+
+* PubChem CID: **5280343**
+* Formula: **C15H10O7**
+* Molecular Weight: حدود **302.24 g/mol**
+
+### 3. Chlorogenic Acid
+
+* PubChem CID: **1794427**
+* Formula: **C16H18O9**
+* Molecular Weight: حدود **354.31 g/mol**
+
+### 4. Procyanidin B2
+
+* PubChem CID مورد استفاده در مسیر اولیه پروژه: **122738**
+* Formula: **C30H26O12**
+* Molecular Weight: حدود **578.5 g/mol**
+
+---
+
+# 6. چرا این چهار ترکیب انتخاب شدند؟
+
+در مطالعات مربوط به Apple Pomace و Polyphenols، ترکیباتی مانند:
+
+* Phloridzin
+* Chlorogenic acid
+* Quercetin derivatives
+* Procyanidins
+
+بارها در ارتباط با سیب و پسماند سیب بررسی شده بودند.
+
+به‌خصوص درباره Phloridzin و Apple Pomace شواهد قابل‌توجهی وجود داشت و مطالعات ضدقارچی روی fractions حاصل از پسماند سیب نیز وجود داشت.
+
+اما باز هم تأکید شد:
+
+**Anti-fungal activity ≠ direct PG inhibition**
+
+این تفاوت برای Interpretation نتایج بسیار مهم بود.
+
+---
+
+# 7. اولین مشکل اساسی: شناسایی دقیق Targetها
+
+در ابتدای پروژه هنوز برای بعضی Targetها Accession دقیق و قابل اتکا وجود نداشت.
+
+### PG1 اولیه
+
+در اولین گزارش پژوهشی، برای PG1 از:
+
+**QGP72110.1**
+
+استفاده شده بود.
+
+این توالی:
+
+* از *Fusarium oxysporum*
+* isolate LH1333
+* حدود 346 aa
+* partial sequence
+
+بود.
+
+پس خودمان هم در گزارش اولیه آن را با Confidence متوسط ثبت کرده بودیم.
+
+---
+
+### PG5 اولیه
+
+برای PG5 ابتدا:
+
+**QIJ77968.1**
+
+انتخاب شده بود.
+
+این مورد نیز:
+
+* isolate LH871
+* حدود 348 aa
+* partial
+
+بود.
+
+در نتیجه PG5 هم در مرحله اول هنوز Target نهایی و ایده‌آل محسوب نمی‌شد.
+
+---
+
+### PGX4 اولیه
+
+در ابتدا:
+
+**C7B5W4**
+
+و:
+
+**ACU01938.1**
+
+بررسی شدند.
+
+اما مشخص شد این مورد فقط یک **fragment** حدود 282 aa بود، در حالی که مقاله اصلی PGX4 یک پروتئین کامل حدود 454 aa را توصیف می‌کرد.
+
+در نتیجه این هم برای Docking نهایی گزینه مطلوبی نبود.
+
+---
+
+### PGX6 اولیه
+
+در ابتدای کار حتی Accession دقیق و Sequence قابل اتکایی برای PGX6 در دست نبود.
+
+در گزارش اولیه برای PGX6 وضعیت:
+
+**Not found**
+
+ثبت شده بود.
+
+این یکی از بزرگ‌ترین موانع مرحله اول بود.
+
+---
+
+# 8. مشکل PDBهای 1PG و 6PGX
+
+در مرحله جست‌وجوی ساختارهای تجربی، دو شناسه بسیار وسوسه‌کننده بودند:
+
+**PDB 1PG**
+
+و
+
+**PDB 6PGX**
+
+چون از روی اسم به نظر می‌رسیدند مستقیماً با PG1 و PGX6 مرتبط هستند.
+
+اما بررسی دقیق نشان داد این فرض اشتباه است.
+
+### PDB 1PG
+
+این ساختار به Polygalacturonase مورد نظر از *Fusarium oxysporum* تعلق نداشت و مربوط به سیستم/گونه دیگری بود.
+
+در بررسی تکمیلی مشخص شد 1PG مربوط به:
+
+**Polygalacturonase from Stereum purpureum**
+
+است.
+
+بنابراین برای Target اصلی پروژه مناسب نبود.
+
+---
+
+### PDB 6PGX
+
+این ساختار نیز متعلق به Target مورد نظر از *Fusarium oxysporum* نبود.
+
+ساختار مورد بررسی مربوط به:
+
+**Endopolygalacturonase C from Aspergillus niger**
+
+بود.
+
+پس شباهت نام:
+
+**6PGX**
+
+به‌تنهایی هیچ ارزش اثباتی برای انتساب ساختار به:
+
+**Fusarium PGX6**
+
+نداشت.
+
+این اشتباه خوشبختانه قبل از استفاده علمی از ساختارها شناسایی شد.
+
+---
+
+# 9. یک اشتباه مهم دیگر: P49891
+
+در یکی از مراحل اولیه Search، شناسه:
+
+**P49891**
+
+مورد توجه قرار گرفت.
+
+اما بررسی دقیق نشان داد این شناسه اصلاً PG1 قارچی نیست و مربوط به:
+
+**Mouse Sult1e1**
+
+است.
+
+بنابراین P49891 نیز کنار گذاشته شد.
+
+این مرحله یک درس مهم در روند پروژه بود:
+
+> هیچ Accession نباید فقط بر اساس شباهت نام یا ظاهر Search result انتخاب شود؛ Organism، Gene، Protein name و sequence باید همزمان تطبیق داشته باشند.
+
+---
+
+# 10. رسیدن به PG1 نهایی
+
+پس از عبور از مشکلات مرحله اول، Target PG1 به شکل بسیار مطمئن‌تری تثبیت شد.
+
+## PG1 نهایی
+
+**UniProt: O00094**
+
+نام Entry:
+
+**O00094_FUSOXPG1**
+
+### ویژگی‌های ثبت‌شده
+
+* Gene: **PG1**
+* Organism: *Fusarium oxysporum f. sp. lycopersici*
+* Strains: 42-87 / Race 1 / FOL-3
+* Length: **370 aa**
+* Signal Peptide: **1–16**
+* Mature chain: **17–370**
+* GH28 family
+* Active-site annotation around residue **231**
+
+این انتخاب از نظر کیفیت بسیار بهتر از QGP72110.1 اولیه بود.
+
+---
+
+# 11. بررسی ساختار PG1 و استفاده از 1HG8
+
+در اینجا یک نکته ظریف وجود داشت.
+
+1HG8 خودش Target واقعی PG1 ما از *Fusarium oxysporum* نبود، اما به‌عنوان یک **structural homolog** ارزش داشت.
+
+ساختار:
+
+**1HG8**
+
+از:
+
+**Fusarium moniliforme**
+
+بود.
+
+کیفیت گزارش‌شده آن حدود:
+
+**1.73 Å X-ray**
+
+بود.
+
+به دلیل similarity بالا، از آن برای راهنمایی ساختاری و Homology modeling استفاده شد.
+
+در مسیر مدل‌سازی:
+
+* 1HG8 chain A
+* حدود 90.26% sequence identity در مدل گزارش‌شده
+* GMQE حدود 0.93
+* QMEANDisCo حدود 0.94
+
+به‌عنوان یک مدل با کیفیت بالا در نظر گرفته شد.
+
+یک مدل دیگر با مرجع 7B8B نیز مورد توجه قرار گرفت، ولی مدل مبتنی بر 1HG8 بهتر ارزیابی شد.
+
+---
+
+# 12. اصلاح اشتباه residue mapping در PG1
+
+در یک مرحله از پروژه، یک نگاشت Residue بین Template و Target انجام شد که بعداً مشخص شد درست نیست.
+
+این نگاشت اولیه نباید به‌عنوان داده نهایی استفاده می‌شد.
+
+بعداً با بررسی Alignment واقعی فایل ساختاری، نگاشت اصلاح شد.
+
+موارد صحیحی که در نهایت از Alignment استخراج شد عبارت بودند از:
+
+```text
+Template 188 → Target 209
+Template 191 → Target 212
+Template 212 → Target 233
+Template 213 → Target 234
+Template 267 → Target 288
+Template 269 → Target 290
+```
+
+این اصلاح مهم بود، چون نشان داد حتی اگر دو توالی بسیار شبیه باشند، شماره Residueها را نباید با حدس یا انتقال مستقیم تفسیر کرد.
+
+---
+
+# 13. آماده‌سازی محیط محاسباتی
+
+محیط کار روی:
+
+**Windows**
+
+راه‌اندازی شد و کار عمدتاً از طریق:
+
+* CMD
+* PowerShell
+* فایل‌های PDB/PDBQT
+* ابزارهای command-line
+
+انجام گرفت.
+
+ابزارهای اصلی مورد استفاده:
+
+### AutoDock Vina
+
+نسخه مورد استفاده در Docking نهایی:
+
+**AutoDock Vina 1.2.7**
+
+### Open Babel
+
+برای کار با تبدیل‌های Structure و فرمت‌هایی مانند PDB/PDBQT مورد استفاده قرار گرفت.
+
+### Meeko
+
+برای preparation دقیق‌تر receptor و ligand و اصلاح مشکل torsion tree استفاده شد.
+
+---
+
+# 14. مسیر Boltz
+
+در ابتدای پروژه بررسی استفاده از **Boltz** نیز انجام شد.
+
+هدف این بود که از یک ابزار مدرن‌تر برای:
+
+* structural prediction
+* binding prediction
+* complex modeling
+
+استفاده شود.
+
+اما روی محیط Windows یک مانع نرم‌افزاری وجود داشت.
+
+مشکل مربوط به محیط قدیمی PowerShell بود و فرمان/قابلیت:
+
+**Invoke-RestMethod**
+
+در محیط موجود به شکل مورد نیاز در دسترس نبود.
+
+در نتیجه راه‌اندازی مستقیم workflow مربوط به Boltz با مانع سیستم‌عامل/PowerShell مواجه شد و مسیر اجرایی اصلی پروژه عملاً به سمت:
+
+**AlphaFold + AutoDock Vina + Open Babel + Meeko**
+
+هدایت شد.
+
+### درباره متن دقیق Error
+
+رشته کامل Error اولیه Boltz در فایل‌های فعلی به‌صورت خام باقی نمانده است؛ بنابراین از بازسازی جعلی متن Error خودداری می‌شود. چیزی که به‌طور معتبر باقی مانده این است که مشکل در محیط PowerShell و نبود قابلیت `Invoke-RestMethod` مانع اجرای آن مسیر شده بود.
+
+---
+
+# 15. دریافت و آماده‌سازی ساختارهای AlphaFold
+
+چون برای Targetهای اصلی ساختار Experimental دقیق در PDB نداشتیم، مسیر:
+
+**AlphaFold predicted structure**
+
+انتخاب شد.
+
+برای PG1 از مدل مرتبط با O00094 استفاده شد.
+
+برای PG5 از:
+
+**AF-O74244-F1-model_v6.pdb**
+
+استفاده شد.
+
+و برای PGX6 مدل:
+
+**AF-A0A0J9W3A4-F1-model_v6.pdb**
+
+در workflow قرار گرفت.
+
+---
+
+# 16. تثبیت PG5 با Accession بهتر
+
+در ادامه جست‌وجو، برای PG5 به یک شناسه بسیار قابل اتکاتر رسیدیم:
+
+## PG5 نهایی
+
+**UniProt O74244**
+
+ویژگی‌های اصلی:
+
+* *Fusarium oxysporum f. sp. lycopersici*
+* Length: **361 aa**
+* Signal peptide: **1–17**
+* Mature chain: **18–361**
+* Active site annotation: **His223**
+* GH28
+* AlphaFold model: **AF-O74244-F1**
+
+همچنین این توالی با:
+
+**NCBI AAC27792.1**
+
+مطابقت داشت.
+
+منبع NCBI آن نیز:
+
+**AF078156.1**
+
+بود.
+
+این تطبیق اهمیت زیادی داشت چون برای اولین بار یک Target با Sequence دقیق‌تر و پیوند واضح‌تر به مقاله اصلی PG5 تثبیت شد.
+
+---
+
+# 17. بررسی کیفیت AlphaFold مدل PG5
+
+مدل:
+
+**AF-O74244-F1-model_v6.pdb**
+
+بررسی شد.
+
+شاخص‌های گزارش‌شده:
+
+* Chain A
+* 361 residues
+* Mean pLDDT ≈ **94.51**
+* Median pLDDT ≈ **98.75**
+* His223 pLDDT ≈ **98.75**
+
+یعنی از دیدگاه Confidence مدل، بخش عمده ساختار بسیار مناسب بود و ناحیه مربوط به His223 نیز Confidence بالایی داشت.
+
+---
+
+# 18. نخستین خطای جدی در آماده‌سازی PDBQT مربوط به PG5
+
+در این مرحله یک فایل PDBQT اولیه برای PG5 ساخته شد.
+
+در نگاه اول ساختار عجیب نبود:
+
+* Residues 1–361 وجود داشتند.
+* Chain A برقرار بود.
+* Coordinateها ظاهراً سالم بودند.
+* Missing residue gap دیده نمی‌شد.
+
+اما وقتی فایل از نظر استاندارد PDBQT بررسی شد، یک مشکل بسیار جدی پیدا شد.
+
+---
+
+# 19. مشکل TORSDOF = 1272
+
+فایل اولیه PG5 دارای:
+
+```text
+ROOT
+ENDROOT
+```
+
+و مهم‌تر از همه:
+
+```text
+BRANCH
+...
+ENDBRANCH
+```
+
+در مقیاس بسیار بزرگ بود.
+
+تعداد:
+
+**1272 BRANCH**
+
+ثبت شده بود.
+
+و:
+
+```text
+TORSDOF 1272
+```
+
+وجود داشت.
+
+حتی در Header اطلاعاتی درباره تعداد بسیار زیادی active torsion دیده می‌شد.
+
+این یعنی تقریباً کل پروتئین مانند یک Molecule انعطاف‌پذیر با torsion tree پردازش شده بود.
+
+در حالی که برای Docking معمولی:
+
+**Receptor باید به‌صورت rigid receptor PDBQT آماده شود.**
+
+این فایل از این نظر شبیه یک flexible/ligand-style representation شده بود.
+
+---
+
+# 20. چرا این خطا مهم بود؟
+
+اگر قرار بود همین فایل مستقیماً به‌عنوان:
+
+```text
+vina --receptor PG5-O74244.pdbqt
+```
+
+استفاده شود، ساختار ورودی از نظر نوع representation اشتباه بود.
+
+بنابراین وضعیت:
+
+**Vina readiness = NOT READY**
+
+اعلام شد.
+
+نکته مهم این بود که خود Protein Coordinate خراب نبود.
+
+وضعیت واقعی چیزی شبیه این بود:
+
+> **Good protein coordinates → bad receptor PDBQT preparation**
+
+---
+
+# 21. بررسی کامل فایل خراب PG5
+
+اعداد مهم فایل:
+
+### Protein
+
+* 361 residues
+* residues 1–361
+* Chain A
+
+### Atoms
+
+* 3173 total atoms
+* 2614 heavy atoms
+
+### Hydrogens
+
+* 559 explicit H
+
+### Atom types
+
+```text
+C
+A
+N
+NA
+OA
+S
+HD
+```
+
+Heavy atom typing در کل قابل قبول بود.
+
+---
+
+# 22. مشکل دوم PG5: Hydrogen Typing
+
+هر 559 هیدروژن با:
+
+```text
+HD
+```
+
+نمایش داده شده بود.
+
+در حالی که همه Hها donor hydrogen نیستند.
+
+هیدروژن متصل به Carbon نباید به‌سادگی مانند Hydrogen donor رفتار کند.
+
+بنابراین:
+
+**Hydrogen presence = OK**
+
+اما:
+
+**Hydrogen preparation/type = WARNING**
+
+ثبت شد.
+
+به‌جای اینکه دستی صدها atom تغییر داده شود، تصمیم درست این بود که فایل از ابتدا با یک Preparation صحیح دوباره ساخته شود.
+
+---
+
+# 23. مشکل سوم PG5: Charges
+
+در فایل اولیه:
+
+**تمام chargeها 0.000**
+
+بودند.
+
+این موضوع بررسی شد، اما به‌عنوان blocker اصلی Vina در نظر گرفته نشد، چون در مدل Vina مورد استفاده، chargeهای ارائه‌شده به همان شکل کلاسیک جزو عامل تعیین‌کننده اصلی نبودند.
+
+بنابراین:
+
+**Charge = Warning**
+
+ولی:
+
+**Torsion tree = Critical**
+
+بود.
+
+---
+
+# 24. مشکل چهارم PG5: pLDDT
+
+در PDBQT اولیه، B-factorها عملاً به شکل لازم pLDDT مدل AlphaFold را حفظ نکرده بودند.
+
+بنابراین از خود PDBQT نمی‌شد pLDDT اصلی را بازیابی کرد.
+
+این موضوع به این معنی نبود که:
+
+> مدل AlphaFold confidence صفر دارد.
+
+بلکه فقط یعنی:
+
+> این اطلاعات در Representation جدید PDBQT حفظ نشده است.
+
+---
+
+# 25. تعیین Grid Box برای PG5
+
+یکی دیگر از مراحل مهم، تعیین Search Box اطراف ناحیه مهم بود.
+
+His223 به‌عنوان residue مهم در ساختار PG5 در نظر گرفته شد.
+
+حدود 8 Å از محیط اطراف His223 بررسی شد.
+
+Bounds استخراج‌شده:
+
+```text
+X = -10.832 ... 8.571
+Y = -11.649 ... 6.611
+Z = -18.288 ... -1.816
+```
+
+مرکز هندسی:
+
+```text
+(-0.522, -3.151, -8.914)
+```
+
+پیشنهاد شد که Box برابر باشد با:
+
+```text
+center_x = -0.52
+center_y = -3.15
+center_z = -8.91
+
+size_x = 24
+size_y = 24
+size_z = 24
+```
+
+مرزهای آن:
+
+```text
+X: -12.522 ... 11.478
+Y: -15.151 ... 8.849
+Z: -20.914 ... 3.086
+```
+
+این Box نسبت به Box اولیه پوشش کامل‌تری از محیط محلی His223 می‌داد.
+
+---
+
+# 26. اصلاح PG5 با Meeko
+
+بعد از این بررسی، تصمیم گرفته شد PDBQT به شکل دستی اصلاح نشود.
+
+Receptor دوباره با مسیر صحیح‌تر و با استفاده از **Meeko** preparation شد.
+
+این بار QC نهایی نشان داد:
+
+```text
+Chain A
+Residues 1–361
+No missing gaps
+Backbone continuity = PASS
+BRANCH = 0
+ENDBRANCH = 0
+TORSDOF = 0
+```
+
+یعنی مشکل مهم قبلی برطرف شده بود.
+
+همچنین:
+
+* Standard residues
+* valid HIS223
+* atom typing مناسب
+* polar hydrogen handling منطقی
+
+تأیید شد.
+
+این نقطه عملاً یکی از مهم‌ترین milestoneهای پروژه بود.
+
+---
+
+# 27. مرحله نخست آموزش واقعی AutoDock Vina
+
+برای اینکه مستقیماً از چهار Ligand و چند Target شروع نکنیم، یک workflow آموزشی روی PG1 اجرا شد.
+
+Target:
+
+**PG1-O00094**
+
+Ligand:
+
+**Quercetin**
+
+---
+
+# 28. Docking آموزشی شماره 1 — Quercetin روی PG1
+
+Receptor:
+
+```text
+items\Proteins\PG1-O00094\receptor.pdbqt
+```
+
+Ligand:
+
+```text
+items\Ligands\pdbqt structure\quercetin.pdbqt
+```
+
+Grid:
+
+```text
+center_x = -8.6
+center_y = 4.0
+center_z = 43.7
+
+size_x = 22
+size_y = 22
+size_z = 24
+```
+
+Search settings:
+
+```text
+exhaustiveness = 16
+num_modes = 10
+energy_range = 4
+```
+
+بهترین affinity:
+
+```text
+-7.5 kcal/mol
+```
+
+Top modes:
+
+```text
+1   -7.5
+2   -7.4
+3   -7.3
+4   -7.2
+5   -7.2
+6   -7.1
+7   -7.1
+8   -7.1
+9   -6.9
+10  -6.9
+```
+
+این مرحله اولین اطمینان عملی بود که:
+
+**Vina → receptor → ligand → search box → output**
+
+به‌شکل صحیح اجرا می‌شود.
+
+---
+
+# 29. Docking آموزشی شماره 2 — اصلاح Grid
+
+پس از اجرای اول، Box روی ناحیه فعال/ساختاری مهم‌تر متمرکز شد.
+
+Box جدید:
+
+```text
+center_x = -9.25
+center_y = -0.10
+center_z = 42.01
+
+size_x = 20
+size_y = 18
+size_z = 22
+```
+
+دوباره:
+
+```text
+Quercetin
+```
+
+Dock شد.
+
+بهترین affinity باز هم:
+
+```text
+-7.5 kcal/mol
+```
+
+بود.
+
+این تکرار از نظر عملی مهم بود، چون نشان داد نتیجه بهترین pose در دو تنظیم مختلف یکسان باقی مانده است، هرچند یکسان بودن score الزاماً به معنی یکسان بودن orientation نیست.
+
+---
+
+# 30. جزئیات RMSD در Docking دوم PG1
+
+نتایج:
+
+```text
+Mode 1   -7.5   RMSD LB 0.000   UB 0.000
+Mode 2   -7.5   RMSD LB 3.302   UB 8.240
+Mode 3   -7.4   RMSD LB 4.185   UB 6.808
+Mode 4   -7.3   RMSD LB 4.130   UB 6.737
+Mode 5   -7.2   RMSD LB 1.840   UB 7.070
+Mode 6   -7.2   RMSD LB 1.598   UB 3.092
+Mode 7   -7.1   RMSD LB 4.859   UB 9.773
+Mode 8   -7.1   RMSD LB 3.329   UB 7.983
+Mode 9   -7.1   RMSD LB 4.171   UB 6.620
+Mode 10  -7.0   RMSD LB 3.040   UB 5.344
+```
+
+---
+
+# 31. Docking نهایی اولیه PG1 با چهار Ligand
+
+پس از اینکه Workflow تثبیت شد، چهار ترکیب روی PG1 آزمایش شدند.
+
+Ligands:
+
+1. Quercetin
+2. Phlorizin
+3. Chlorogenic acid
+4. Procyanidin B2
+
+همه با:
+
+```text
+Exhaustiveness = 16
+Num modes = 10
+Energy range = 4
+```
+
+روی همان focused grid اجرا شدند.
+
+---
+
+# 32. نتیجه نهایی PG1
+
+بهترین Vina scoreها:
+
+```text
+Chlorogenic acid   -7.7 kcal/mol
+Procyanidin B2     -7.6 kcal/mol
+Quercetin          -7.5 kcal/mol
+Phlorizin          -7.3 kcal/mol
+```
+
+دامنه کل:
+
+```text
+0.4 kcal/mol
+```
+
+بود.
+
+---
+
+# 33. تحلیل Quercetin در PG1
+
+Pose 1 با residueهای زیر interaction نزدیک نشان داد:
+
+```text
+ASN186   2.73 Å
+TYR299   2.95 Å
+ASP188   3.00 Å
+ASP210   3.00 Å
+ASP209   3.03 Å
+SER237   3.04 Å
+GLU260   3.12 Å
+GLY236   3.17 Å
+LYS241   3.20 Å
+ARG264   3.25 Å
+LYS266   3.56 Å
+HIS231   3.61 Å
+HIS185   3.67 Å
+```
+
+در تحلیل Persistence، در Poseهای نزدیک، مواردی مانند:
+
+```text
+ARG264
+ASP188
+ASP209
+ASP210
+GLY236
+LYS241
+LYS266
+SER237
+TYR299
+```
+
+به‌صورت بسیار پایدار مشاهده شدند.
+
+بنابراین Quercetin از نظر topology interaction نتیجه‌ای بسیار منسجم داشت، حتی اگر score آن پایین‌ترین نباشد.
+
+---
+
+# 34. تحلیل Phlorizin در PG1
+
+Pose 1:
+
+```text
+ASP209   2.72 Å
+GLY302   2.79 Å
+SER115   2.84 Å
+ASP210   2.86 Å
+ASP188   2.95 Å
+SER237   2.98 Å
+ARG264   3.17 Å
+HIS185   3.18 Å
+ASN116   3.26 Å
+ASN186   3.27 Å
+HIS149   3.41 Å
+LYS266   3.49 Å
+TYR299   3.59 Å
+LYS241   3.88 Å
+```
+
+در Poseهای نزدیک نیز network نسبتاً پایداری حول:
+
+```text
+ASP188
+ASP209
+ASP210
+ARG264
+LYS266
+```
+
+باقی مانده بود.
+
+بنابراین score به‌تنهایی نمی‌توانست بگوید ligand به pocket نمی‌چسبد.
+
+---
+
+# 35. تحلیل Chlorogenic Acid در PG1
+
+Pose 1:
+
+```text
+ASP210   2.80 Å
+ASP209   2.93 Å
+HIS125   2.96 Å
+ASN186   2.99 Å
+HIS231   3.09 Å
+GLY236   3.15 Å
+ARG264   3.15 Å
+LYS266   3.22 Å
+HIS149   3.29 Å
+ALA213   3.45 Å
+ASP152   3.45 Å
+ASP188   3.54 Å
+ASP191   3.56 Å
+THR215   3.66 Å
+ASP124   3.84 Å
+```
+
+به‌ویژه:
+
+```text
+ASP188
+ASP209
+ASP210
+ARG264
+LYS266
+```
+
+در چند Pose نزدیک تکرار شدند.
+
+در نتیجه Chlorogenic acid هم از نظر score و هم از نظر interaction persistence داده جالبی ایجاد کرد.
+
+---
+
+# 36. تحلیل Procyanidin B2 در PG1
+
+Pose 1:
+
+```text
+SER115   2.70 Å
+ASP191   2.89 Å
+ASN268   2.90 Å
+GLY302   2.91 Å
+SER237   2.98 Å
+HIS125   3.13 Å
+ASN117   3.42 Å
+ASN186   3.43 Å
+HIS149   3.58 Å
+ASN116   3.58 Å
+LYS241   3.66 Å
+ASP124   3.66 Å
+HIS185   3.67 Å
+ASN301   3.68 Å
+ASP188   3.76 Å
+```
+
+نکته مهم این بود که Procyanidin B2 همان network مرکزی:
+
+```text
+ASP209
+ASP210
+ARG264
+LYS266
+```
+
+را مثل سه ligand دیگر بازتولید نکرد.
+
+همچنین به دلیل اندازه و flexibility بیشتر، orientationهای مختلفی ایجاد شد.
+
+---
+
+# 37. نکته بسیار مهم درباره تفسیر PG1
+
+با اینکه scoreها ظاهراً دارای ترتیب عددی مشخص بودند، اختلاف کل فقط:
+
+```text
+0.4 kcal/mol
+```
+
+بود.
+
+بنابراین نمی‌توان گفت:
+
+> Chlorogenic acid از نظر آزمایشگاهی قطعاً قوی‌تر است.
+
+می‌توان گفت:
+
+> در اجرای فعلی Vina، Chlorogenic acid پایین‌ترین predicted docking score را داشت و با interaction network مرکزی نیز سازگاری نشان داد.
+
+این تفاوت علمی مهم است.
+
+---
+
+# 38. حرکت به سمت PGX6
+
+پس از PG1، بخش بسیار سخت‌تر پروژه یعنی یافتن یک PGX6 قابل اتکا آغاز شد.
+
+ابتدا شناسه‌ای در UniProt پیدا شد:
+
+**X0DZJ1**
+
+اما این مورد دوباره دچار مشکل هویتی بود.
+
+X0DZJ1 مربوط به:
+
+**Fusarium oxysporum f. sp. raphani 54005**
+
+و gene:
+
+**FOQG_00030**
+
+بود.
+
+در حالی که هدف مورد نظر ما Target مرتبط با:
+
+**F. oxysporum f. sp. lycopersici**
+
+بود.
+
+بنابراین X0DZJ1 به‌عنوان Target نهایی کنار گذاشته شد.
+
+---
+
+# 39. کشف PGX6 مناسب‌تر از NCBI
+
+در ادامه جست‌وجوها بر Genome سویه 4287 متمرکز شد.
+
+Target مناسب پیدا شد:
+
+## PGX6
+
+**NCBI RefSeq: XP_018255385.1**
+
+### ویژگی‌های اصلی
+
+* Protein: galacturan 1,4-alpha-galacturonidase
+* Organism: *Fusarium oxysporum f. sp. lycopersici* 4287
+* Strain: 4287
+* Gene: **FOXG_15415**
+* GeneID: **28956473**
+* mRNA: **XM_018395501.1**
+* Chromosome: **5**
+* Length: **464 aa**
+* Calculated MW ≈ **51541 Da**
+* GH28 region:
+  **80–425**
+* Pfam:
+  **PF00295 / Glyco_hydro_28**
+* پنج Exon
+
+این Target از نظر اتصال به یک Genome مشخص و یک سویه مشخص، بسیار بهتر از وضعیت اولیه PGX6 بود.
+
+---
+
+# 40. استخراج Sequence کامل PGX6
+
+Sequence کامل 464 aa ثبت شد و در فایل‌های پروژه نگهداری شد.
+
+شروع آن:
+
+```text
+MKVSSFFSTLSLFAGVLAEAIDLPAGVPRSIEEFRAKHPYELPVKRSHRKVY...
+```
+
+و Sequence کامل در فایل پروژه به شکل 464-residue sequence ذخیره شد.
+
+این مرحله از نظر پژوهشی مهم بود، چون برای اولین بار PGX6 از یک حدس اسمی تبدیل به یک Protein sequence واقعی و قابل استفاده شد.
+
+---
+
+# 41. تهیه مدل AlphaFold برای PGX6
+
+مدل مورد استفاده:
+
+```text
+AF-A0A0J9W3A4-F1-model_v6.pdb
+```
+
+بود.
+
+طبق بررسی قبلی:
+
+* Length = 464 aa
+* Chain A
+* مدل کامل
+* Confidence متوسط کلی حدود 92+
+* ناحیه N-terminal ابتدایی Confidence پایین‌تری داشت
+* ناحیه GH28 اصلی در بخش داخلی پروتئین قرار داشت
+
+یک نکته مهم این بود که N-terminus احتمالاً شامل Signal Peptide بود.
+
+---
+
+# 42. آماده‌سازی اولیه PGX6 PDBQT
+
+فایل:
+
+```text
+PGX6.pdbqt
+```
+
+ساخته و بررسی شد.
+
+در QC:
+
+```text
+Chain A
+Residues 1–464
+4475 atoms
+BRANCH = 0
+ENDBRANCH = 0
+TORSDOF = 0
+```
+
+وجود داشت.
+
+برخلاف فایل اولیه PG5، PGX6 دیگر مشکل بزرگ:
+
+```text
+TORSDOF 1272
+```
+
+را نداشت.
+
+---
+
+# 43. اما PGX6 هنوز یک محدودیت داشت
+
+در PGX6، Signal Peptide در ابتدای فایل نگه داشته شده بود.
+
+برای docking دقیق‌تر، mature protein-only representation از نظر مفهومی تمیزتر بود.
+
+بااین‌حال، چون Ligand poseها در ناحیه N-terminal Signal Peptide قرار نگرفتند، این موضوع به‌عنوان:
+
+**Limitation**
+
+ثبت شد، نه اینکه نتایج Docking را از ابتدا باطل کند.
+
+---
+
+# 44. تعیین Box برای PGX6
+
+Box نهایی مورد استفاده در docking:
+
+```text
+center_x = 5.35
+center_y = 3.77
+center_z = -4.26
+
+size_x = 20
+size_y = 20
+size_z = 18
+```
+
+بود.
+
+همه چهار Ligand دقیقاً با همین Grid و همان:
+
+```text
+Exhaustiveness = 16
+Num modes = 20
+```
+
+Dock شدند.
+
+---
+
+# 45. اجرای چهار Docking واقعی PGX6
+
+در این مرحله برای هر Ligand یک Vina run مستقل اجرا شد.
+
+فایل:
+
+```text
+Docking-operations.txt
+```
+
+حتی commandهای استفاده‌شده را نگهداری کرد.
+
+نمونه command:
+
+```text
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PGX6-AF-A0A0J9W3A4-F1\PGX6_final.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\chlorogenic_acid.pdbqt" --center_x 5.35 --center_y 3.77 --center_z -4.26 --size_x 20 --size_y 20 --size_z 18 --exhaustiveness 16 --num_modes 20 --out "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\third dock\PGX6_chlorogenic_acid_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PGX6 AF-A0A0J9W3A4-F1 DOCKING\third dock\PGX6_chlorogenic_acid.log"
+```
+
+همین ساختار برای سه Ligand دیگر نیز تکرار شد.
+
+---
+
+# 46. اجرای PGX6 — Quercetin
+
+Vina:
+
+**AutoDock Vina v1.2.7**
+
+Scoring function:
+
+```text
+vina
+```
+
+Grid:
+
+```text
+X 5.35
+Y 3.77
+Z -4.26
+```
+
+Size:
+
+```text
+20 × 20 × 18 Å
+```
+
+Exhaustiveness:
+
+```text
+16
+```
+
+Random seed:
+
+```text
+1088128164
+```
+
+اجرای Vina با موفقیت از 0 تا 100 درصد انجام شد.
+
+هیچ Error runtime در log وجود نداشت.
+
+نتایج کامل:
+
+```text
+Mode   Affinity   RMSD LB   RMSD UB
+
+1      -8.458     0         0
+2      -8.065     1.378     3.024
+3      -8.016     2.173     2.247
+4      -7.955     1.522     6.729
+5      -7.886     1.847     3.406
+6      -7.845     2.400     6.647
+7      -7.820     2.480     3.438
+8      -7.674     1.538     3.376
+9      -7.616     4.048     6.107
+10     -7.612     3.717     6.184
+11     -7.588     1.944     2.142
+12     -7.441     4.722     7.115
+13     -7.437     1.643     7.159
+14     -7.404     2.488     7.128
+15     -7.231     3.707     6.670
+16     -7.209     3.777     6.891
+17     -7.179     1.981     7.053
+18     -7.131     4.305     7.008
+19     -6.948     4.547     6.386
+20     -6.879     2.268     3.367
+```
+
+---
+
+# 47. اجرای PGX6 — Phloridzin
+
+Random seed:
+
+```text
+-578065032
+```
+
+نتایج:
+
+```text
+1      -9.248     0         0
+2      -8.601     1.724     1.999
+3      -8.554     3.096     6.340
+4      -8.475     2.121     2.586
+5      -8.366     2.354     7.446
+6      -8.315     2.259     7.809
+7      -8.204     3.059     6.492
+8      -8.146     2.573     8.177
+9      -8.132     3.099     6.443
+10     -8.094     1.955     2.945
+11     -8.058     2.506     7.588
+12     -7.933     2.372     7.310
+13     -7.777     2.870     7.704
+14     -7.685     2.407     7.421
+15     -7.660     1.879     5.455
+16     -7.650     2.889     8.456
+17     -7.642     2.679     7.721
+18     -7.578     2.548     8.187
+19     -7.422     2.054     7.404
+20     -7.293     2.473     6.682
+```
+
+بهترین score:
+
+```text
+-9.248 kcal/mol
+```
+
+---
+
+# 48. اجرای PGX6 — Chlorogenic Acid
+
+Random seed:
+
+```text
+2008003715
+```
+
+نتایج:
+
+```text
+1      -8.456     0         0
+2      -8.452     3.316     3.897
+3      -8.436     1.716     1.808
+4      -8.387     2.192     7.171
+5      -8.361     1.946     2.246
+6      -8.318     1.963     7.135
+7      -8.106     2.151     7.847
+8      -8.063     2.789     3.230
+9      -8.039     1.919     2.725
+10     -8.036     3.399     7.980
+11     -7.996     1.984     8.025
+12     -7.905     2.531     3.080
+13     -7.865     1.180     1.671
+14     -7.820     2.026     7.306
+15     -7.661     3.013     7.939
+16     -7.653     3.757     4.574
+17     -7.651     2.859     7.754
+18     -7.536     2.668     7.833
+19     -7.198     3.078     8.410
+20     -7.116     2.088     3.047
+```
+
+بهترین:
+
+```text
+-8.456 kcal/mol
+```
+
+---
+
+# 49. اجرای PGX6 — Procyanidin B2
+
+Random seed:
+
+```text
+706571800
+```
+
+نتایج:
+
+```text
+1      -7.665     0         0
+2      -6.976     2.211     6.136
+3      -6.416     2.623     6.566
+4      -6.137     2.274     6.202
+5      -6.017     2.012     5.439
+6      -5.832     2.516     5.686
+7      -5.727     1.995     5.843
+8      -5.253     2.335     5.568
+9      -5.122     2.291     6.710
+10     -4.845     2.134     6.883
+11     -4.316     2.143     6.446
+12     -4.301     2.176     6.806
+13     -4.236     2.323     5.342
+14     -4.223     2.099     6.927
+15     -4.128     2.287     4.950
+16     -3.851     2.128     5.361
+17     -3.842     1.687     6.866
+18     -3.805     1.596     5.921
+19     -3.415     2.281     6.718
+20     -1.923     1.991     5.197
+```
+
+بهترین:
+
+```text
+-7.665 kcal/mol
+```
+
+---
+
+# 50. خلاصه نهایی PGX6
+
+نتایج بهترین Pose:
+
+| Ligand           | Best Vina score |
+| ---------------- | --------------: |
+| Phloridzin       |      **−9.248** |
+| Quercetin        |      **−8.458** |
+| Chlorogenic acid |      **−8.456** |
+| Procyanidin B2   |      **−7.665** |
+
+اختلاف‌ها:
+
+```text
+Phloridzin vs Quercetin       = 0.790 kcal/mol
+Phloridzin vs Chlorogenic     = 0.792 kcal/mol
+Phloridzin vs Procyanidin B2  = 1.583 kcal/mol
+
+Quercetin vs Chlorogenic acid = 0.002 kcal/mol
+```
+
+بنابراین در این اجرای مشخص:
+
+**Phloridzin** پایین‌ترین predicted Vina score را داشت.
+
+Quercetin و Chlorogenic acid تقریباً از نظر عددی کاملاً نزدیک بودند.
+
+---
+
+# 51. بررسی پایداری Poseهای PGX6
+
+صرفاً score کافی نبود.
+
+برای همین Poseها و RMSDها نیز بررسی شدند.
+
+در Phloridzin:
+
+```text
+Mode 1 vs Mode 2
+RMSD LB = 1.724 Å
+RMSD UB = 1.999 Å
+```
+
+این نشان‌دهنده شباهت نسبتاً مناسب دو Pose اول بود.
+
+در Procyanidin B2:
+
+```text
+Mode 1 vs Mode 2
+RMSD UB = 6.136 Å
+
+Mode 1 vs Mode 3
+RMSD UB = 6.566 Å
+```
+
+بنابراین Procyanidin B2 تنوع فضایی بسیار بیشتری در Poseهای حاصل نشان داد.
+
+این مسئله در Interpretation آن مهم شد.
+
+---
+
+# 52. استخراج interactionهای PGX6
+
+بعد از Docking، فقط جدول Vina باقی نماند؛ Pose 1 هر ligand با receptor بررسی شد.
+
+آستانه مورد استفاده:
+
+```text
+distance ≤ 4 Å
+```
+
+بود.
+
+---
+
+# 53. تعداد residueهای نزدیک برای PGX6
+
+در Pose 1:
+
+### Phloridzin
+
+**18 residues**
+
+### Quercetin
+
+**14 residues**
+
+### Chlorogenic acid
+
+**16 residues**
+
+### Procyanidin B2
+
+**13 residues**
+
+در این تحلیل:
+
+**Phloridzin**
+
+تعداد بیشتری از contactهای نزدیک را نشان داد.
+
+اما تعداد contact به‌تنهایی برابر با binding strength نیست.
+
+---
+
+# 54. Residueهای مشترک هر چهار Ligand در PGX6
+
+شش residue در هر چهار مجموعه دیده شدند:
+
+```text
+ASN231
+ASP254
+GLN308
+ARG312
+TYR349
+PHE350
+```
+
+این finding مهم بود، زیرا نشان می‌داد با وجود تفاوت ساختاری Ligandها، یک بخش مشترک از pocket در تعامل‌ها دیده می‌شود.
+
+---
+
+# 55. Residueهای مشترک سه Ligand
+
+برای:
+
+* Phloridzin
+* Quercetin
+* Chlorogenic acid
+
+مجموعه مشترک بزرگ‌تری دیده شد:
+
+```text
+GLN130
+TRP201
+ASN231
+ASP233
+ASP254
+LYS260
+GLN308
+ARG312
+LYS314
+TYR349
+PHE350
+```
+
+Procyanidin B2 این pattern را کاملاً بازتولید نمی‌کرد.
+
+---
+
+# 56. Quercetin روی PGX6 — Contactهای نزدیک
+
+```text
+ASP233  2.60 Å
+GLN130  2.62 Å
+TYR349  2.66 Å
+GLU166  2.85 Å
+LYS260  3.07 Å
+ARG312  3.10 Å
+GLN308  3.11 Å
+LYS230  3.18 Å
+HIS277  3.20 Å
+TRP201  3.32 Å
+ASN231  3.34 Å
+LYS314  3.53 Å
+ASP254  3.62 Å
+PHE350  3.98 Å
+```
+
+---
+
+# 57. Phloridzin روی PGX6 — Contactهای نزدیک
+
+```text
+ASP255  2.65 Å
+ASP233  2.82 Å
+GLN130  2.85 Å
+LYS314  2.89 Å
+ASP346  2.90 Å
+ARG312  2.96 Å
+LYS260  2.99 Å
+HIS277  2.99 Å
+TRP201  2.99 Å
+GLU166  3.04 Å
+TYR349  3.07 Å
+ILE167  3.11 Å
+GLN308  3.16 Å
+ASP254  3.33 Å
+ASN231  3.55 Å
+ASN351  3.62 Å
+PHE350  3.66 Å
+SER258  3.71 Å
+```
+
+یکی از مهم‌ترین الگوهای این مرحله این بود که Phloridzin همزمان با:
+
+```text
+ASP233
+ASP254
+ASP255
+```
+
+تماس نزدیک داشت.
+
+---
+
+# 58. Chlorogenic Acid روی PGX6
+
+```text
+SER283  2.71 Å
+ASP254  2.71 Å
+ASN231  2.78 Å
+ARG312  2.86 Å
+GLN130  2.87 Å
+GLN308  2.92 Å
+LYS314  2.96 Å
+GLY282  3.03 Å
+TYR349  3.07 Å
+HIS309  3.14 Å
+LYS260  3.15 Å
+TRP201  3.24 Å
+PHE350  3.38 Å
+ASP233  3.48 Å
+ILE167  3.69 Å
+ASP255  3.83 Å
+```
+
+Chlorogenic acid نیز هر سه residue:
+
+```text
+ASP233
+ASP254
+ASP255
+```
+
+را در محدوده 4 Å درگیر کرده بود.
+
+---
+
+# 59. Procyanidin B2 روی PGX6
+
+```text
+GLY464  2.77 Å
+ASN351  2.79 Å
+ASN231  2.84 Å
+GLU166  2.88 Å
+ILE167  3.03 Å
+PHE350  3.04 Å
+ASP254  3.07 Å
+LEU168  3.11 Å
+HIS277  3.21 Å
+ASP346  3.24 Å
+GLN308  3.40 Å
+TYR349  3.45 Å
+ARG312  3.63 Å
+```
+
+یک مورد جالب:
+
+```text
+GLY464 = 2.77 Å
+```
+
+بود که در دیگر ligandها به این شکل دیده نشد.
+
+همچنین Procyanidin B2 نسبت به سه ligand دیگر کمی به سمت انتهای C-terminal شیفت کرده بود.
+
+---
+
+# 60. بررسی حدود Grid در PGX6
+
+Grid مورد استفاده:
+
+```text
+center = (5.35, 3.77, -4.26)
+size = (20,20,18)
+```
+
+بنابراین حدود فضایی آن تقریباً:
+
+```text
+X: -4.65 ... 15.35
+Y: -6.23 ... 13.77
+Z: -13.26 ... 4.74
+```
+
+بود.
+
+Residueهایی مانند:
+
+```text
+ASP233
+ASP254
+ASP255
+GLN308
+ARG312
+TYR349
+PHE350
+```
+
+در این حجم قرار داشتند.
+
+به همین دلیل Grid انتخاب‌شده با pocket مشاهده‌شده سازگاری مناسبی داشت.
+
+---
+
+# 61. موقعیت تقریبی Poseهای چهار Ligand در PGX6
+
+Centroidهای تقریبی Pose 1:
+
+### Quercetin
+
+```text
+(4.97, 8.14, -4.76)
+```
+
+### Phloridzin
+
+```text
+(6.25, 7.39, -6.08)
+```
+
+### Chlorogenic acid
+
+```text
+(6.18, 7.29, -4.99)
+```
+
+### Procyanidin B2
+
+```text
+(5.87, 10.28, -7.74)
+```
+
+سه Ligand اول در یک ناحیه کلی مشابه قرار داشتند.
+
+Procyanidin B2 به شکل محسوس‌تری شیفت نشان داد.
+
+---
+
+# 62. تفسیر ساختاری PGX6
+
+از مجموع score + contact + pose pattern به چند مشاهده رسیدیم.
+
+### Phloridzin
+
+* بهترین score:
+  **−9.248**
+* contact زیاد
+* درگیری با ASP233/254/255
+* قرارگیری در همان ناحیه مرکزی observed pocket
+
+### Quercetin
+
+* score:
+  **−8.458**
+* contact کمتر از Phloridzin
+* ارتباط خوب با pocket مرکزی
+* تقریباً هم‌سطح با Chlorogenic acid
+
+### Chlorogenic acid
+
+* score:
+  **−8.456**
+* تقریباً برابر با Quercetin
+* contact زیاد
+* درگیری با ASP233/254/255
+
+### Procyanidin B2
+
+* score:
+  **−7.665**
+* Poseهای متنوع‌تر
+* RMSDهای بالاتر
+* topology متفاوت‌تر
+* بخشی از interaction مرکزی را دارد ولی دقیقاً همان pattern سه ترکیب دیگر را تکرار نمی‌کند.
+
+---
+
+# 63. یک نکته علمی بسیار مهم درباره H-bond
+
+در طول تحلیل فاصله‌ها، اصطلاحات مربوط به interaction گاهی به‌صورت:
+
+> candidate hydrogen bond
+
+استفاده شد.
+
+اما در نهایت باید دقیق باشیم.
+
+فاصله مثلاً:
+
+```text
+2.8 Å
+```
+
+به‌تنهایی ثابت نمی‌کند که:
+
+**Hydrogen bond قطعی**
+
+وجود دارد.
+
+برای اثبات قوی‌تر باید:
+
+* Donor
+* Acceptor
+* distance
+* angle
+* geometry
+
+بررسی شوند.
+
+به همین دلیل در Interpretation نهایی، contactهای زیر 4 Å به‌عنوان:
+
+**potential interaction / close contact**
+
+در نظر گرفته شدند، نه H-bond قطعی.
+
+---
+
+# 64. وضعیت PGX6 و Signal Peptide
+
+یکی از محدودیت‌های باقی‌مانده این بود که فایل Docking شامل کل 464 residue بود.
+
+یعنی Signal peptide حذف نشده بود.
+
+از نظر اصول Preparation، mature protein-only structure می‌توانست Representation تمیزتری باشد.
+
+با این حال:
+
+* docking box روی بخش داخلی protein بود،
+* Poseها در N-terminal signal peptide قرار نگرفتند،
+* و residueهای observed pocket در بخش بالغ/ساختاری اصلی قرار داشتند.
+
+بنابراین نتایج PGX6 به‌عنوان:
+
+**usable preliminary computational results**
+
+در نظر گرفته شدند، اما limitation آن ثبت شد.
+
+---
+
+# 65. یک نکته مهم درباره PG5 و وضعیت Docking
+
+برای PG5 آماده‌سازی receptor با موفقیت اصلاح شد و user بعد از آن چهار Ligand را Dock کرد.
+
+اما در منابعی که اکنون در دسترس هستند، **خود فایل‌های خام PG5 docking logs یا outputهای چهار run نهایی قابل بازیابی نیستند**.
+
+بنابراین هیچ score عددی برای PG5 در این گزارش ساخته نمی‌شود.
+
+آنچه با اطمینان ثبت شده:
+
+* Target صحیح O74244 پیدا شد.
+* مدل AlphaFold با کیفیت بالا بررسی شد.
+* PDBQT اولیه خطای torsion داشت.
+* خطا با Meeko اصلاح شد.
+* QC نهایی receptor:
+
+  * BRANCH = 0
+  * TORSDOF = 0
+  * chain A
+  * 361 residue
+  * HIS223 معتبر
+  * Preparation مناسب
+* کاربر سپس چهار Docking را اجرا کرد.
+
+ولی مقدار affinity آن چهار run در فایل‌های فعلی به شکل قابل استناد در دسترس نیست.
+
+---
+
+# 66. خطاهای کلیدی کل پروژه
+
+اگر خطاها را جدا کنیم، مهم‌ترین موارد این‌ها بودند:
+
+## خطای مفهومی اول
+
+اشتباه در برداشت اولیه درباره اینکه:
+
+**Target protein باید از سیب گرفته شود.**
+
+### اصلاح
+
+تفکیک:
+
+**Apple = ligand source**
+
+و:
+
+**Fusarium PG = target**
+
+---
+
+## خطای هویتی دوم
+
+استفاده اولیه از Accessionهای:
+
+```text
+QGP72110.1
+QIJ77968.1
+C7B5W4
+```
+
+به‌عنوان Targetهای نزدیک، در حالی که برخی partial یا fragment بودند.
+
+### اصلاح
+
+حرکت به سمت Targetهای دقیق‌تر:
+
+```text
+PG1 = O00094
+PG5 = O74244
+PGX6 = XP_018255385.1
+```
+
+---
+
+## خطای هویتی سوم
+
+برداشت اشتباه از:
+
+```text
+1PG
+6PGX
+```
+
+به‌عنوان ساختارهای مربوط به Targetهای پروژه.
+
+### اصلاح
+
+بررسی Organism و Protein identity و حذف هر دو از گزینه مستقیم.
+
+---
+
+## خطای هویتی چهارم
+
+اشتباه درباره:
+
+```text
+P49891
+```
+
+که Protein مورد نظر نبود.
+
+### اصلاح
+
+کنار گذاشتن شناسه و تثبیت PG1 روی:
+
+```text
+O00094
+```
+
+---
+
+## خطای هویتی پنجم
+
+بررسی:
+
+```text
+X0DZJ1
+```
+
+برای PGX6.
+
+### مشکل
+
+گونه و strain درست نبود:
+
+```text
+F. oxysporum f. sp. raphani 54005
+```
+
+### اصلاح
+
+پیدا کردن:
+
+```text
+XP_018255385.1
+FOXG_15415
+strain 4287
+```
+
+---
+
+# 67. خطای ساختاری بزرگ PG5
+
+بدترین مشکل فنی Preparation:
+
+```text
+BRANCH = 1272
+TORSDOF = 1272
+```
+
+بود.
+
+این فایل برای rigid receptor مناسب نبود.
+
+---
+
+# 68. خطای Hydrogen preparation در PG5
+
+همه 559 Hydrogen:
+
+```text
+HD
+```
+
+بودند.
+
+این representation برای receptor ایده‌آل نبود.
+
+---
+
+# 69. مشکل Box در PG5
+
+Box اولیه بخشی از محیط 8 Å اطراف His223 را حدود:
+
+```text
+0.48 Å
+```
+
+در یک جهت clip می‌کرد.
+
+### اصلاح
+
+Box جدید:
+
+```text
+(-0.52, -3.15, -8.91)
+24 × 24 × 24 Å
+```
+
+---
+
+# 70. مشکل pLDDT preservation
+
+در PDBQTهای آماده‌شده، B-factor/pLDDT اطلاعات اصلی همیشه حفظ نشده بود.
+
+این موضوع باعث شد:
+
+> Confidence model
+
+را از PDBQT به‌تنهایی نتوانیم دوباره بازیابی کنیم.
+
+---
+
+# 71. یک نکته مهم درباره Charge
+
+در PG5 فایل اولیه chargeها صفر بودند.
+
+ولی برای Vina کلاسیک، این موضوع blocker اصلی تلقی نشد.
+
+پس این مورد در مقایسه با:
+
+```text
+wrong torsion tree
+```
+
+اهمیت بسیار کمتری داشت.
+
+---
+
+# 72. آیا AutoDock Vina خطای runtime داد؟
+
+در لاگ‌های نهایی PGX6:
+
+**خیر.**
+
+هر چهار Docking:
+
+* Grid ساخته شد.
+* Search انجام شد.
+* Refinement انجام شد.
+* 0 تا 100% کامل شد.
+* output نوشته شد.
+
+هیچ Error runtime در چهار log نهایی PGX6 وجود نداشت.
+
+این تفاوت مهم است:
+
+**PDBQT preparation problem**
+
+یک چیز است و:
+
+**Vina runtime error**
+
+چیز دیگری.
+
+PG5 یک Preparation مشکل‌دار داشت؛ ولی بعد از اصلاح، Vina اجرا شد.
+
+---
+
+# 73. ساختار فایل‌های واقعی پروژه
+
+در طول پروژه مجموعه‌ای از فایل‌های داده شکل گرفت.
+
+مهم‌ترین آن‌ها:
+
+### برای PG1
+
+```text
+1HG8.pdb
+receptor.pdbqt
+coords.pdb
+quercetin.pdbqt
+phlorizin.pdbqt
+chlorogenic_acid.pdbqt
+procyanidin_B2.pdbqt
+```
+
+و logهای training و final.
+
+### برای PG5
+
+```text
+AF-O74244-F1-model_v6.pdb
+PG5 receptor PDBQT
+```
+
+به‌علاوه فایل‌های مربوط به QC و گزارش Preparation.
+
+### برای PGX6
+
+```text
+AF-A0A0J9W3A4-F1-model_v6.pdb
+PGX6.pdbqt
+PGX6_final.pdbqt
+```
+
+و چهار خروجی Docking:
+
+```text
+PGX6_quercetin.log
+PGX6_quercetin_out.pdbqt
+
+PGX6_phloridzin.log
+PGX6_phloridzin_out.pdbqt
+
+PGX6_chlorogenic_acid.log
+PGX6_chlorogenic_acid_out.pdbqt
+
+PGX6_procyanidin_B2.log
+PGX6_procyanidin_B2.pdbqt
+```
+
+---
+
+# 74. ترتیب کلی workflow اجراشده
+
+کل مسیر عملی را می‌توان این‌طور بازسازی کرد:
+
+```text
+Project idea
+      ↓
+Initial apple-target hypothesis
+      ↓
+Scientific reframing
+      ↓
+Apple compounds = ligands
+Fusarium PGs = targets
+      ↓
+Literature review
+      ↓
+Initial Target selection
+      ↓
+NCBI / UniProt search
+      ↓
+Detection of partial / fragment / wrong entries
+      ↓
+Correction of Target identities
+      ↓
+PG1 = O00094
+PG5 = O74244
+PGX6 = XP_018255385.1
+      ↓
+PDB / structural search
+      ↓
+1PG / 6PGX rejected
+      ↓
+Homology / AlphaFold models
+      ↓
+PDB inspection
+      ↓
+PDBQT preparation
+      ↓
+Initial PG5 preparation error
+      ↓
+BRANCH/TORSDOF QC
+      ↓
+Meeko correction
+      ↓
+Rigid receptor validation
+      ↓
+Vina training with PG1 + Quercetin
+      ↓
+Grid refinement
+      ↓
+Four-ligand PG1 docking
+      ↓
+Residue/persistence analysis
+      ↓
+PGX6 target identification
+      ↓
+PGX6 model preparation
+      ↓
+Four independent Vina runs
+      ↓
+Pose and contact analysis
+      ↓
+Computational interpretation
+```
+
+---
+
+# 75. مهم‌ترین نتیجه PG1
+
+PG1 نشان داد که می‌توان یک workflow نسبتاً کامل ایجاد کرد:
+
+**Protein identity → structure → receptor → ligand → grid → Vina → pose analysis**
+
+نتایج PG1:
+
+```text
+Chlorogenic acid   -7.7
+Procyanidin B2     -7.6
+Quercetin          -7.5
+Phlorizin          -7.3
+```
+
+ولی interaction analysis نشان داد:
+
+* Chlorogenic acid
+* Quercetin
+* Phlorizin
+
+از نظر contact topology شباهت بیشتری با central pocket دارند.
+
+در حالی که Procyanidin B2 در Poseهای اصلی topology متفاوت‌تری داشت.
+
+---
+
+# 76. مهم‌ترین نتیجه PGX6
+
+PGX6 داده‌ای متفاوت و از نظر عددی قوی‌تر ایجاد کرد.
+
+نتیجه:
+
+```text
+Phloridzin        -9.248
+Quercetin         -8.458
+Chlorogenic acid  -8.456
+Procyanidin B2    -7.665
+```
+
+یعنی در اجرای فعلی Vina، Phloridzin پایین‌ترین predicted score را تولید کرد.
+
+همزمان Phloridzin تعداد بیشتری contact ≤4 Å نیز داشت.
+
+Chlorogenic acid و Quercetin تقریباً از نظر score برابر بودند:
+
+```text
+0.002 kcal/mol difference
+```
+
+و هر دو با pocket مرکزی contact داشتند.
+
+---
+
+# 77. یکی از مهم‌ترین یافته‌های تحلیلی پروژه
+
+در این پروژه به‌طور عملی مشخص شد که:
+
+**Docking score alone is not enough.**
+
+برای مثال در PG1:
+
+Procyanidin B2 score خوبی داشت:
+
+```text
+-7.6
+```
+
+اما interaction network آن کاملاً مثل Chlorogenic acid و Quercetin نبود.
+
+در مقابل Phlorizin score ضعیف‌تری داشت:
+
+```text
+-7.3
+```
+
+ولی contact network بسیار منسجمی با همان pocket ایجاد می‌کرد.
+
+این نشان داد که باید حداقل این سه چیز را با هم دید:
+
+```text
+1. Vina affinity
+2. Pose geometry
+3. Residue interaction persistence
+```
+
+---
+
+# 78. چرا نمی‌توان از این نتایج مستقیماً گفت «این ماده مهارکننده است»؟
+
+چون Vina score یک:
+
+**computational scoring estimate**
+
+است.
+
+آن را نباید با:
+
+* Experimental binding free energy
+* IC50
+* Ki
+* enzymatic inhibition
+
+یکی دانست.
+
+برای مثال:
+
+```text
+Phloridzin = -9.248
+```
+
+به این معنی نیست که:
+
+> IC50 آن مشخص شده است.
+
+و یا:
+
+> ثابت شده که PGX6 را مهار می‌کند.
+
+فقط می‌گوید:
+
+> این ligand در این computational setup یک predicted docking score بسیار favorable ایجاد کرده است.
+
+---
+
+# 79. محدودیت اختلاف scoreها
+
+یکی از نکات مهم این بود که اختلاف برخی نتایج بسیار کم است.
+
+مثلاً در PGX6:
+
+```text
+Quercetin     -8.458
+Chlorogenic   -8.456
+```
+
+اختلاف:
+
+```text
+0.002 kcal/mol
+```
+
+است.
+
+این مقدار آن‌قدر کم است که از آن نمی‌توان نتیجه گرفت یکی از دیگری واقعاً از نظر زیستی قوی‌تر است.
+
+در PG1 نیز تمام بازه فقط:
+
+```text
+0.4 kcal/mol
+```
+
+بود.
+
+بنابراین score order باید به‌صورت computational observation گزارش شود، نه biological ranking قطعی.
+
+---
+
+# 80. محدودیت مدل‌های AlphaFold
+
+بخش عمده Targetهای ما ساختار Experimental دقیق نداشتند.
+
+پس مجبور بودیم از:
+
+**predicted structure**
+
+استفاده کنیم.
+
+این یعنی uncertaintyهایی مانند:
+
+* side-chain orientation
+* protonation
+* local conformation
+* loop geometry
+* water-mediated interactions
+* receptor flexibility
+
+می‌توانند نتیجه Docking را تحت تأثیر قرار دهند.
+
+به همین دلیل ساختار predicted برای یک screening اولیه مناسب است، اما جای Experimental structure را به‌طور کامل نمی‌گیرد.
+
+---
+
+# 81. محدودیت flexible ligandها
+
+چهار Ligand یکسان نیستند.
+
+از نظر اندازه و flexibility:
+
+* Quercetin کوچک‌تر است.
+* Chlorogenic acid انعطاف‌پذیرتر است.
+* Phloridzin ساختار بزرگ‌تر و چندگروهی دارد.
+* Procyanidin B2 از همه conformationally demandingتر است.
+
+بنابراین scoreها همیشه مقایسه‌ای کاملاً ساده نیستند.
+
+مخصوصاً برای Procyanidin B2، تعداد زیاد Poseهای متفاوت و RMSD بالا نشان داد که flexibility آن اهمیت دارد.
+
+---
+
+# 82. محدودیت receptor flexibility
+
+در Docking فعلی receptorها به‌صورت rigid استفاده شدند.
+
+یعنی side-chain rearrangement عمده protein در حین docking مدل نشد.
+
+این یک simplification رایج است، اما می‌تواند بعضی interactionها را از واقعیت فاصله دهد.
+
+---
+
+# 83. محدودیت آب و solvent
+
+در Docking معمولی ما water network اختصاصی را به‌صورت کامل مدل نکردیم.
+
+در بعضی protein–ligand interactions، آب ساختاری می‌تواند نقش مهمی داشته باشد.
+
+پس contactهای مستقیم Docking همه واقعیت محیط زیستی را نشان نمی‌دهند.
+
+---
+
+# 84. محدودیت Signal Peptide در PGX6
+
+همان‌طور که گفته شد:
+
+```text
+Signal peptide
+```
+
+در receptor PGX6 باقی مانده بود.
+
+اگرچه pocket مشاهده‌شده از آن فاصله داشت، اما از نظر Preparation بهتر بود mature chain به‌صورت جداگانه آماده شود.
+
+این به‌عنوان یکی از موارد قابل ارتقا ثبت شد.
+
+---
+
+# 85. وضعیت PGX4 تا این مرحله
+
+در مسیر اولیه PGX4 یک fragment:
+
+```text
+C7B5W4
+```
+
+بررسی شده بود.
+
+اما بعداً Searchهای NCBI نشان دادند که داده‌های دیگری نیز درباره pgx4 وجود دارند، از جمله:
+
+```text
+FJ790331.1
+AB256822.1
+MN708362.1
+```
+
+و حتی در NCBI recordهای مربوط به *F. oxysporum f. sp. lycopersici* نتایج بیشتری مشاهده شد.
+
+بنابراین تصویر اولیه:
+
+> «PGX4 هیچ sequence خوبی ندارد»
+
+بعداً تا حدی اصلاح شد.
+
+بااین‌حال، تا این نقطه **Docking نهایی PGX4 هنوز در workflow کامل نشده بود**.
+
+---
+
+# 86. یک نکته مهم درباره تاریخچه داده‌ها
+
+بعضی گزارش‌های اولیه پروژه با اطلاعاتی تهیه شده بودند که بعداً در ادامه پروژه اصلاح شدند.
+
+برای نمونه:
+
+* PG1 اولیه → QGP72110.1
+* PG1 نهایی → O00094
+* PG5 اولیه → QIJ77968.1
+* PG5 نهایی → O74244
+* PGX6 اولیه → Not found
+* PGX6 نهایی → XP_018255385.1
+* PGX6 اشتباه → X0DZJ1
+* 1PG و 6PGX به‌عنوان target structure → rejected
+
+بنابراین اگر نسخه‌های اولیه و نهایی را کنار هم نگاه کنیم، تفاوت بین آن‌ها نشانه «بی‌نظمی» نیست؛ بخشی از آن حاصل **Refinement علمی هویت Target** است.
+
+در پروژه‌های bioinformatics این نوع اصلاح در مرحله Target validation طبیعی و حتی ضروری است.
+
+---
+
+# 87. مهم‌ترین تغییرات از ابتدای کار تا امروز
+
+در آغاز:
+
+```text
+Target identity uncertain
+Protein-source concept uncertain
+PDB identity uncertain
+PGX6 sequence unavailable
+PG5/PG1 sequences partial
+```
+
+در مرحله میانی:
+
+```text
+Target concept corrected
+Protein database searching expanded
+AlphaFold introduced
+PG1 validated
+PG5 improved
+PGX6 exact strain sequence found
+```
+
+در مرحله عملی:
+
+```text
+PDBQT preparation
+↓
+QC
+↓
+Detection of torsion error
+↓
+Meeko correction
+↓
+Vina training
+↓
+Grid refinement
+↓
+Four-ligand docking
+↓
+Interaction analysis
+```
+
+---
+
+# 88. وضعیت علمی فعلی پروژه
+
+تا این مرحله، بخش بیوانفورماتیک پروژه به یک workflow واقعی و قابل گزارش رسیده است.
+
+### Targetها
+
+**PG1**
+
+```text
+UniProt O00094
+```
+
+**PG5**
+
+```text
+UniProt O74244
+```
+
+**PGX6**
+
+```text
+NCBI XP_018255385.1
+FOXG_15415
+strain 4287
+```
+
+### Ligands
+
+```text
+Phloridzin
+Quercetin
+Chlorogenic acid
+Procyanidin B2
+```
+
+### Docking engine
+
+```text
+AutoDock Vina 1.2.7
+```
+
+### Preparation tools
+
+```text
+Open Babel
+Meeko
+```
+
+### Structural sources
+
+```text
+AlphaFold
+PDB structural homologs
+NCBI
+UniProt
+PubChem
+```
+
+---
+
+# 89. مهم‌ترین نتایج عددی فعلی
+
+## PG1
+
+```text
+Chlorogenic acid   -7.7
+Procyanidin B2     -7.6
+Quercetin          -7.5
+Phlorizin          -7.3
+```
+
+## PGX6
+
+```text
+Phloridzin         -9.248
+Quercetin          -8.458
+Chlorogenic acid   -8.456
+Procyanidin B2     -7.665
+```
+
+PG5:
+
+**Docking performed after receptor validation, but raw numerical final logs are currently unavailable in the retained dataset.**
+
+PGX4:
+
+**Final docking not yet completed.**
+
+---
+
+# 90. تفسیر نهایی علمی فعلی
+
+بر اساس داده‌های موجود، پروژه در این مرحله یک **computational hypothesis** ایجاد کرده است.
+
+در PGX6:
+
+Phloridzin در اجرای فعلی پایین‌ترین predicted score را نشان داده و contactهای متعدد با ناحیه‌ای از pocket ایجاد کرده است.
+
+Quercetin و Chlorogenic acid از نظر score تقریباً کاملاً برابر هستند و هر دو interactionهای مشترکی با شبکه‌ای از residueهای PGX6 نشان می‌دهند.
+
+Procyanidin B2 نیز یک score منفی و قابل توجه تولید کرده، اما Poseها و topology تعاملات آن نسبت به سه ترکیب دیگر متفاوت‌تر هستند.
+
+در PG1، Chlorogenic acid بهترین Vina score را داشت، اما در سطح interaction analysis، Quercetin و Phloridzin نیز interactionهای بسیار منسجمی با pocket مرکزی داشتند.
+
+در نتیجه:
+
+> **عدد docking score به‌تنهایی معیار کافی برای انتخاب نهایی نیست.**
+
+بلکه باید:
+
+```text
+score
++
+pose reproducibility
++
+residue interaction
++
+structural plausibility
++
+target identity
+```
+
+همزمان بررسی شوند.
+
+---
+
+# 91. چیزی که پروژه ثابت کرده و چیزی که ثابت نکرده است
+
+## تا اینجا می‌توان گفت:
+
+* ترکیبات انتخاب‌شده واقعاً در ادبیات مرتبط با سیب/Apple Pomace مطرح هستند.
+* Targetهای نهایی پروتئینی از *Fusarium* انتخاب و دقیق‌تر شناسایی شده‌اند.
+* ساختارهای predicted برای Targetها تهیه شده‌اند.
+* Receptor preparation انجام شده است.
+* یکی از خطاهای مهم PDBQT شناسایی و اصلاح شده است.
+* AutoDock Vina به‌صورت موفق اجرا شده است.
+* برای PG1 و PGX6 چهار Ligand Dock شده‌اند.
+* Pose و residue interaction analysis انجام شده است.
+* برای PGX6 یک interaction pattern مشترک بین چند ligand پیدا شده است.
+
+## ولی هنوز نمی‌توان گفت:
+
+* یکی از ترکیبات قطعاً PG را مهار می‌کند.
+* score برابر با binding affinity واقعی است.
+* scoreها معادل IC50 یا Ki هستند.
+* interactionهای ≤4 Å همگی H-bond قطعی‌اند.
+* یک Target به‌تنهایی مکانیسم ضدقارچی Apple Pomace را توضیح می‌دهد.
+
+---
+
+# 92. خط زمانی خلاصه اما دقیق پروژه
+
+## روزهای ابتدایی
+
+* تعریف مسئله
+* تصور اولیه درباره Target گیاهی/سیبی
+* اصلاح مفهوم پروژه
+* مشخص کردن اینکه Ligand از Apple و Target از Fusarium باشد
+* مطالعه مقالات PG
+
+## مرحله Target discovery
+
+* PG1
+* PGX6
+* PG5
+* PGX4
+* جست‌وجوی UniProt
+* جست‌وجوی NCBI
+* بررسی PDB
+
+## مرحله اصلاح هویت
+
+* رد P49891
+* رد 1PG
+* رد 6PGX
+* رد X0DZJ1
+* کنار گذاشتن partialها به‌عنوان Target نهایی
+* تثبیت O00094
+* تثبیت O74244
+* یافتن XP_018255385.1
+
+## مرحله Structure
+
+* 1HG8
+* Homology modeling
+* AlphaFold
+* بررسی pLDDT
+* بررسی Signal peptide
+* بررسی active-site region
+
+## مرحله Preparation
+
+* PDB → PDBQT
+* بررسی atom types
+* بررسی Hydrogen
+* بررسی charges
+* بررسی residue continuity
+* کشف BRANCH/TORSDOF
+* اصلاح با Meeko
+
+## مرحله Vina
+
+* Quercetin training
+* Grid refinement
+* Four-ligand PG1
+* PGX6 چهار Docking
+
+## مرحله Analysis
+
+* affinity table
+* RMSD
+* centroid
+* residue proximity
+* common interactions
+* pocket topology
+* interpretation limitations
+
+---
+
+# 93. خطاهایی که متن خام دقیقشان اکنون موجود نیست
+
+برای اینکه گزارش علمی دقیق باشد، مواردی که در حافظه فرآیند باقی مانده‌اند اما متن Error آنها در فایل‌های فعلی وجود ندارد، باید جدا ثبت شوند.
+
+### مورد اول
+
+**Boltz / PowerShell**
+
+مشکل محیط PowerShell و نبود `Invoke-RestMethod` ثبت شده است، اما رشته کامل Error در آرشیو فعلی موجود نیست.
+
+### مورد دوم
+
+بعضی commandهای اولیه Open Babel در مکالمات قدیمی بررسی شده بودند، ولی همه stdout/stderrهای خام آن‌ها در فایل‌های فعلی نگهداری نشده‌اند.
+
+بنابراین نمی‌توان با اطمینان متن دقیق Error را داخل یک گزارش رسمی جعل کرد.
+
+### مورد سوم
+
+PG5 final docking logs فعلاً بازیابی نشده‌اند.
+
+پس scoreهای آن نیز نباید حدس زده شوند.
+
+این بخش عمداً خالی از اطلاعات ساختگی نگه داشته شده است.
+
+---
+
+# 94. جمع‌بندی نهایی مسیر پژوهش
+
+این پروژه عملاً از یک ایده نسبتاً کلی شروع شد:
+
+> بررسی ترکیبات زیست‌فعال سیب و ارتباط آن‌ها با Polygalacturonase
+
+اما برای رسیدن به یک workflow علمی معتبر، مجبور شدیم چندین بار تعریف مسئله، هویت Proteinها، ساختارها و روش Preparation را اصلاح کنیم.
+
+مهم‌ترین مراحل اصلاح عبارت بودند از:
+
+**اصلاح Target concept**
+
+از:
+
+```text
+Apple protein target
+```
+
+به:
+
+```text
+Fusarium protein target
++
+Apple-derived ligand
+```
+
+سپس:
+
+**اصلاح Protein identity**
+
+از:
+
+```text
+partial / fragment / ambiguous entries
+```
+
+به:
+
+```text
+PG1 = O00094
+PG5 = O74244
+PGX6 = XP_018255385.1
+```
+
+سپس:
+
+**اصلاح Structural source**
+
+از PDBهای صرفاً مشابه از نظر اسم به:
+
+```text
+AlphaFold / validated structural model
+```
+
+و بعد:
+
+**اصلاح PDBQT preparation**
+
+از:
+
+```text
+TORSDOF 1272
+```
+
+به:
+
+```text
+TORSDOF 0
+```
+
+و در نهایت:
+
+**Docking + structural interaction analysis**
+
+انجام شد.
+
+---
+
+# 95. نتیجه نهایی بخش PG1
+
+PG1 نشان داد:
+
+```text
+Best score = -7.7 kcal/mol
+```
+
+برای Chlorogenic acid.
+
+ولی residue-level analysis نشان داد که:
+
+* Chlorogenic acid
+* Quercetin
+* Phlorizin
+
+همگی به شکل قابل‌توجهی با pocket مرکزی تعامل دارند.
+
+بنابراین تفسیر صرفاً عددی کافی نیست.
+
+---
+
+# 96. نتیجه نهایی بخش PGX6
+
+PGX6 مهم‌ترین dataset فعلی است.
+
+چهار Docking موفق اجرا شدند.
+
+نتیجه:
+
+```text
+Phloridzin         -9.248
+Quercetin          -8.458
+Chlorogenic acid   -8.456
+Procyanidin B2     -7.665
+```
+
+Phloridzin:
+
+* بهترین predicted score
+* 18 contact نزدیک
+* involvement of ASP233/254/255
+* location compatible with observed pocket
+
+را نشان داد.
+
+Quercetin و Chlorogenic acid:
+
+* scores nearly identical
+* مشترک بودن تعداد زیادی residue
+* presence in the same central interaction region
+
+را نشان دادند.
+
+Procyanidin B2:
+
+* score منفی
+* اما Pose variability بیشتر
+* topology متفاوت‌تر
+
+را نشان داد.
+
+---
+
+# 97. نتیجه‌ای که برای Presentation پروژه می‌توان استفاده کرد
+
+فرم علمی و دقیق بیان نتیجه در این مرحله باید نزدیک به این معنا باشد:
+
+> در تحلیل محاسباتی انجام‌شده با AutoDock Vina 1.2.7، چهار ترکیب زیست‌فعال مرتبط با سیب شامل Phloridzin، Quercetin، Chlorogenic acid و Procyanidin B2 با Targetهای منتخب Polygalacturonase از *Fusarium oxysporum* بررسی شدند. Docking نتایج favorable predicted interactions را برای هر چهار ترکیب نشان داد. در PGX6، Phloridzin پایین‌ترین predicted docking score را با −9.248 kcal/mol تولید کرد، در حالی که Quercetin و Chlorogenic acid تقریباً امتیاز یکسانی داشتند. در سطح ساختاری نیز چند residue مشترک در interactionهای چهار ligand مشاهده شد و سه ترکیب Phloridzin، Quercetin و Chlorogenic acid الگوی مشابه‌تری از تماس با ناحیه مرکزی pocket نشان دادند. با این حال، این نتایج computational هستند و به‌تنهایی اثبات‌کننده binding affinity واقعی یا inhibition آزمایشگاهی Polygalacturonase نیستند.
+
+---
+
+# 98. وضعیت کلی پروژه در پایان این گزارش
+
+### از نظر Target validation
+
+**PG1 — تثبیت شده**
+
+**PG5 — تثبیت شده**
+
+**PGX6 — تثبیت شده**
+
+**PGX4 — هنوز در مرحله تکمیل Target/Structure workflow**
+
+### از نظر Ligand preparation
+
+چهار Ligand مورد استفاده قرار گرفته‌اند.
+
+### از نظر receptor preparation
+
+PG5 یک Preparation error بزرگ داشت که شناسایی و اصلاح شد.
+
+### از نظر Docking execution
+
+PG1 و PGX6 با موفقیت Dock شده‌اند.
+
+### از نظر structural analysis
+
+برای PG1 و PGX6 انجام شده است.
+
+### از نظر scientific interpretation
+
+داده‌های کافی برای ایجاد یک **preliminary computational hypothesis** وجود دارد، اما برای biological claim نهایی هنوز به validation بیشتری نیاز است.
+
+---
+
+# 99. جمع‌بندی نهایی در یک نگاه
+
+```text
+PROJECT
+│
+├── Scientific reframing
+│   ├── Apple = ligand source
+│   └── Fusarium PG = protein target
+│
+├── Target discovery
+│   ├── PG1
+│   ├── PG5
+│   ├── PGX6
+│   └── PGX4
+│
+├── Identity correction
+│   ├── QGP72110.1 → replaced
+│   ├── QIJ77968.1 → replaced
+│   ├── C7B5W4 → fragment / replaced
+│   ├── P49891 → wrong protein
+│   ├── 1PG → wrong organism
+│   ├── 6PGX → wrong organism
+│   ├── X0DZJ1 → wrong strain/target
+│   ├── O00094 → PG1 final
+│   ├── O74244 → PG5 final
+│   └── XP_018255385.1 → PGX6 final
+│
+├── Structural workflow
+│   ├── PDB search
+│   ├── 1HG8 homolog analysis
+│   ├── AlphaFold models
+│   ├── pLDDT review
+│   └── Signal peptide review
+│
+├── Receptor preparation
+│   ├── PDB → PDBQT
+│   ├── atom typing
+│   ├── hydrogen analysis
+│   ├── charge review
+│   ├── grid design
+│   └── Meeko correction
+│
+├── Critical PG5 error
+│   ├── BRANCH = 1272
+│   ├── TORSDOF = 1272
+│   └── corrected → BRANCH 0 / TORSDOF 0
+│
+├── Vina training
+│   ├── Quercetin / PG1
+│   ├── initial grid
+│   └── focused grid
+│
+├── PG1 docking
+│   ├── Quercetin
+│   ├── Phlorizin
+│   ├── Chlorogenic acid
+│   └── Procyanidin B2
+│
+├── PGX6 docking
+│   ├── Quercetin = -8.458
+│   ├── Phloridzin = -9.248
+│   ├── Chlorogenic acid = -8.456
+│   └── Procyanidin B2 = -7.665
+│
+└── Structural interpretation
+    ├── residue contacts
+    ├── RMSD
+    ├── common pocket
+    ├── pose topology
+    └── computational hypothesis
+```
+
+---
+
+# 100. نتیجه نهایی
+
+مسیر اجراشده از یک سؤال ابتدایی درباره «ترکیبات سیب» به یک workflow کامل‌تر تبدیل شد که در آن:
+
+**ligands from apple waste**
+
+با:
+
+**well-defined fungal polygalacturonase targets**
+
+در یک محیط:
+
+**AlphaFold + structural validation + Meeko/Open Babel + AutoDock Vina 1.2.7**
+
+بررسی شدند.
+
+مهم‌ترین دستاورد فنی پروژه فقط گرفتن یک عدد docking score نبود؛ بلکه این بود که در طول مسیر، چند اشتباه مهم در **تعریف Target، شناسایی Accession، انتخاب PDB و Preparation فایل PDBQT** شناسایی شدند و قبل از اینکه به نتیجه‌گیری علمی نادرست منتهی شوند، اصلاح شدند.
+
+از میان نتایج فعلی، داده PGX6 کامل‌ترین مجموعه عملیاتی را دارد و شامل:
+
+* Target identity
+* Sequence
+* AlphaFold model
+* receptor PDBQT
+* چهار Vina run
+* 20 Pose برای هر Ligand
+* RMSD
+* contact analysis
+* مشترکات residueها
+* pocket interpretation
+
+است.
+
+بنابراین پروژه در این مرحله دیگر صرفاً یک «Docking آزمایشی» نیست، بلکه به یک **computational screening workflow مستند** تبدیل شده است؛ با این حال، هنوز باید نتیجه آن به‌عنوان **فرضیه محاسباتی** تلقی شود، نه اثبات نهایی مهار آنزیمی.
+
+**پایان گزارش**

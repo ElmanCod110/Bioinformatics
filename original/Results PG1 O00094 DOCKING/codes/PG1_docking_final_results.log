@@ -1,0 +1,620 @@
+======================================================================
+PG1-O00094 MOLECULAR DOCKING — COMPLETE FINAL LOG
+======================================================================
+
+Project focus
+-------------
+Preliminary molecular docking of four apple-associated bioactive
+compounds against the modeled PG1 endopolygalacturonase of
+Fusarium oxysporum f. sp. lycopersici (UniProt O00094).
+
+Compounds
+---------
+1. Quercetin
+2. Phlorizin
+3. Chlorogenic acid
+4. Procyanidin B2
+
+Docking software
+----------------
+AutoDock Vina
+
+Receptor used
+-------------
+items\Proteins\PG1-O00094\receptor.pdbqt
+
+Ligands used
+------------
+items\Ligands\pdbqt structure\quercetin.pdbqt
+items\Ligands\pdbqt structure\phlorizin.pdbqt
+items\Ligands\pdbqt structure\chlorogenic_acid.pdbqt
+items\Ligands\pdbqt structure\procyanidin_B2.pdbqt
+
+======================================================================
+1. DOCKING PROTOCOL
+======================================================================
+
+Initial Quercetin training run
+------------------------------
+Grid center:
+    X = -8.6
+    Y =  4.0
+    Z = 43.7
+
+Grid size:
+    22 x 22 x 24 Angstrom
+
+Focused comparison protocol
+----------------------------
+The final four-compound comparison used the focused active-site
+grid:
+
+    center_x = -9.25
+    center_y = -0.10
+    center_z = 42.01
+
+    size_x = 20
+    size_y = 18
+    size_z = 22 Angstrom
+
+Search settings used for the focused comparison:
+
+    exhaustiveness = 16
+    num_modes      = 10
+    energy_range   = 4
+
+The same receptor, search box, and Vina settings were used for
+Quercetin, Phlorizin, Chlorogenic acid, and Procyanidin B2 in the
+final comparison.
+
+======================================================================
+2. EXPERIMENT / TRAINING 1 — INITIAL QUERCETIN DOCKING
+======================================================================
+
+Ligand:
+    Quercetin
+
+Best affinity:
+    -7.5 kcal/mol
+
+Top modes:
+    Mode 1   -7.5
+    Mode 2   -7.4
+    Mode 3   -7.3
+    Mode 4   -7.2
+    Mode 5   -7.2
+    Mode 6   -7.1
+    Mode 7   -7.1
+    Mode 8   -7.1
+    Mode 9   -6.9
+    Mode 10  -6.9
+
+Interpretation:
+    This was the first training run and used the earlier,
+    broader grid. It established a successful Vina workflow and
+    produced a best predicted affinity of -7.5 kcal/mol.
+
+======================================================================
+3. EXPERIMENT / TRAINING 2 — FOCUSED QUERCETIN DOCKING
+======================================================================
+
+Ligand:
+    Quercetin
+
+Focused grid:
+    center = (-9.25, -0.10, 42.01)
+    size   = 20 x 18 x 22 Angstrom
+
+Best affinity:
+    -7.5 kcal/mol
+
+Top modes:
+    Mode 1   -7.5    RMSD LB 0.000
+    Mode 2   -7.5    RMSD LB 3.302
+    Mode 3   -7.4    RMSD LB 4.185
+    Mode 4   -7.3    RMSD LB 4.130
+    Mode 5   -7.2    RMSD LB 1.840
+    Mode 6   -7.2    RMSD LB 1.598
+    Mode 7   -7.1    RMSD LB 4.859
+    Mode 8   -7.1    RMSD LB 3.329
+    Mode 9   -7.1    RMSD LB 4.171
+    Mode 10  -7.0    RMSD LB 3.040
+
+Comparison with Experiment 1:
+    Initial grid best affinity = -7.5 kcal/mol
+    Focused grid best affinity = -7.5 kcal/mol
+
+Interpretation:
+    The focused grid retained the same best Vina score as the
+    initial training experiment. This supports the practical
+    reproducibility of the observed best-scoring Quercetin pose
+    under the two tested grids, although identical scores alone
+    do not prove identical molecular orientations.
+
+======================================================================
+4. EXPERIMENT / TRAINING 3 — FOUR-COMPOUND DOCKING COMPARISON
+======================================================================
+
+All four compounds were docked using the same focused receptor
+and the same Vina search parameters.
+
+----------------------------------------------------------------------
+4.1 QUERCETIN
+----------------------------------------------------------------------
+
+Best affinity:
+    -7.5 kcal/mol
+
+Top modes:
+    Mode 1   -7.5
+    Mode 2   -7.5
+    Mode 3   -7.4
+    Mode 4   -7.3
+    Mode 5   -7.2
+    Mode 6   -7.2
+    Mode 7   -7.1
+    Mode 8   -7.1
+    Mode 9   -7.1
+    Mode 10  -7.0
+
+Pose-1 interaction network:
+    ASN186   2.73 Angstrom
+    TYR299   2.95
+    ASP188   3.00
+    ASP210   3.00
+    ASP209   3.03
+    SER237   3.04
+    GLU260   3.12
+    GLY236   3.17
+    LYS241   3.20
+    ARG264   3.25
+    LYS266   3.56
+    HIS231   3.61
+    HIS185   3.67
+
+Core active-site-related residues contacted:
+    ASN186
+    ASP188
+    ASP209
+    ASP210
+    ARG264
+    LYS266
+    HIS185
+    HIS231
+
+Candidate hydrogen-bond geometry was observed for several
+polar contacts. These contacts are reported as candidates rather
+than definitive hydrogen bonds because distance and geometry alone
+are insufficient for an absolute interaction assignment.
+
+Near-pose family used for persistence analysis:
+    Mode 1  -7.5
+    Mode 5  -7.2
+    Mode 6  -7.2
+
+Persistent interaction core:
+    ARG264   100%
+    ASP188   100%
+    ASP209   100%
+    ASP210   100%
+    GLY236   100%
+    LYS241   100%
+    LYS266   100%
+    SER237   100%
+    TYR299   100%
+
+Interpretation:
+    Quercetin forms a broad and persistent interaction network
+    centered on the predicted active-site region. Its best affinity
+    is not the strongest among the four compounds, but its binding
+    pattern is structurally coherent and repeatedly contacts the
+    same central residues across near poses.
+
+----------------------------------------------------------------------
+4.2 PHLORIZIN
+----------------------------------------------------------------------
+
+Best affinity:
+    -7.3 kcal/mol
+
+Top modes:
+    Mode 1   -7.3
+    Mode 2   -7.1
+    Mode 3   -7.1
+    Mode 4   -7.1
+    Mode 5   -7.1
+    Mode 6   -7.1
+    Mode 7   -7.1
+    Mode 8   -7.1
+    Mode 9   -7.0
+    Mode 10  -6.8
+
+Pose-1 interaction network:
+    ASP209   2.72 Angstrom
+    GLY302   2.79
+    SER115   2.84
+    ASP210   2.86
+    ASP188   2.95
+    SER237   2.98
+    ARG264   3.17
+    HIS185   3.18
+    ASN116   3.26
+    ASN186   3.27
+    HIS149   3.41
+    LYS266   3.49
+    TYR299   3.59
+    LYS241   3.88
+
+Core active-site-related residues contacted:
+    ASP188
+    ASP209
+    ASP210
+    ARG264
+    LYS266
+    HIS185
+    ASN186
+
+Near-pose family used for persistence analysis:
+    Mode 1  -7.3
+    Mode 2  -7.1
+    Mode 4  -7.1
+    Mode 8  -7.1
+
+Highly persistent contacts across this family included:
+    ASP209   100%
+    SER237   100%
+    ASP210   100%
+    SER115   100%
+    ASN186   100%
+    ARG264   100%
+    ASP188   100%
+    GLY302   100%
+    LYS241   100%
+    LYS266   100%
+
+Interpretation:
+    Phlorizin produced the least negative docking score of the four
+    compounds, but its interaction network is structurally stable.
+    It repeatedly engages the central pocket residues. Therefore,
+    its lower Vina score should not be interpreted as absence of
+    active-site binding.
+
+----------------------------------------------------------------------
+4.3 CHLOROGENIC ACID
+----------------------------------------------------------------------
+
+Best affinity:
+    -7.7 kcal/mol
+
+Top modes:
+    Mode 1   -7.7
+    Mode 2   -7.7
+    Mode 3   -7.4
+    Mode 4   -7.2
+    Mode 5   -7.2
+    Mode 6   -7.1
+    Mode 7   -7.1
+    Mode 8   -7.0
+    Mode 9   -7.0
+    Mode 10  -7.0
+
+Pose-1 interaction network:
+    ASP210   2.80 Angstrom
+    ASP209   2.93
+    HIS125   2.96
+    ASN186   2.99
+    HIS231   3.09
+    GLY236   3.15
+    ARG264   3.15
+    LYS266   3.22
+    HIS149   3.29
+    ALA213   3.45
+    ASP152   3.45
+    ASP188   3.54
+    ASP191   3.56
+    THR215   3.66
+    ASP124   3.84
+
+Core active-site-related residues contacted:
+    ASN186
+    ASP188
+    ASP209
+    ASP210
+    ARG264
+    LYS266
+    HIS231
+
+Near-pose family used for persistence analysis:
+    Mode 1  -7.7
+    Mode 2  -7.7
+    Mode 3  -7.4
+    Mode 4  -7.2
+    Mode 5  -7.2
+
+Highly persistent interactions included:
+    ARG264   100%
+    ASP152   100%
+    ASP188   100%
+    ASP191   100%
+    ASP209   100%
+    ASP210   100%
+    HIS149   100%
+    LYS266   100%
+    THR215   100%
+
+Additional interactions with high persistence:
+    ASN186
+    GLY236
+    HIS125
+
+Interpretation:
+    Chlorogenic acid produced the most negative Vina affinity
+    (-7.7 kcal/mol) and also showed a strong, persistent network
+    in the central predicted pocket. Its near-pose family retained
+    repeated contacts with ASP188, ASP209, ASP210, ARG264, and
+    LYS266. This agreement between scoring and interaction
+    persistence makes chlorogenic acid the strongest preliminary
+    docking candidate in the current dataset, while still not
+    constituting experimental evidence of inhibition.
+
+----------------------------------------------------------------------
+4.4 PROCYANIDIN B2
+----------------------------------------------------------------------
+
+Best affinity:
+    -7.6 kcal/mol
+
+Top modes:
+    Mode 1   -7.6
+    Mode 2   -7.2
+    Mode 3   -7.2
+    Mode 4   -6.3
+    Mode 5   -6.3
+    Mode 6   -6.2
+    Mode 7   -5.7
+    Mode 8   -5.6
+    Mode 9   -5.6
+    Mode 10  -5.5
+
+Pose-1 interaction network:
+    SER115   2.70 Angstrom
+    ASP191   2.89
+    ASN268   2.90
+    GLY302   2.91
+    SER237   2.98
+    HIS125   3.13
+    ASN117   3.42
+    ASN186   3.43
+    HIS149   3.58
+    ASN116   3.58
+    LYS241   3.66
+    ASP124   3.66
+    HIS185   3.67
+    ASN301   3.68
+    ASP188   3.76
+
+Central-pocket observation:
+    In Pose 1, Procyanidin B2 does not form the same dense
+    central interaction network with ASP209, ASP210, ARG264,
+    and LYS266 that is observed for Quercetin, Phlorizin, and
+    Chlorogenic acid.
+
+Near-pose family:
+    Mode 1  -7.6
+    Mode 2  -7.2
+    Mode 3  -7.2
+
+Highly persistent contacts across this family included:
+    ASN186
+    ASP188
+    GLY302
+    HIS149
+    SER115
+    SER237
+
+Interpretation:
+    Procyanidin B2 has a strong Vina score (-7.6 kcal/mol), but
+    its best pose is structurally more peripheral relative to
+    the central active-site interaction network used by the other
+    compounds. Its larger and more flexible structure may allow
+    favorable Vina scoring in orientations that do not reproduce
+    the same central residue network. Therefore, the -7.6 score
+    should not be interpreted as direct evidence that Procyanidin
+    B2 is a stronger PG1 inhibitor than Quercetin.
+
+======================================================================
+5. OVERALL DOCKING SCORE COMPARISON
+======================================================================
+
+Best predicted Vina affinity:
+
+    1. Chlorogenic acid   -7.7 kcal/mol
+    2. Procyanidin B2     -7.6 kcal/mol
+    3. Quercetin          -7.5 kcal/mol
+    4. Phlorizin          -7.3 kcal/mol
+
+Score range:
+    Best  = -7.7 kcal/mol
+    Worst = -7.3 kcal/mol
+    Total range = 0.4 kcal/mol
+
+Pairwise differences:
+    Chlorogenic acid vs Procyanidin B2 = 0.1 kcal/mol
+    Procyanidin B2 vs Quercetin        = 0.1 kcal/mol
+    Quercetin vs Phlorizin             = 0.2 kcal/mol
+    Chlorogenic acid vs Phlorizin      = 0.4 kcal/mol
+
+Interpretive warning:
+    All four values are close. A difference of only 0.1–0.4
+    kcal/mol should not be presented as proof of substantially
+    different experimental inhibitory potency.
+
+======================================================================
+6. INTERACTION NETWORK COMPARISON
+======================================================================
+
+Shared central pocket residues repeatedly involved in the most
+important binding networks:
+
+    ASN186
+    ASP188
+    ASP209
+    ASP210
+    ARG264
+    LYS266
+    HIS185
+    HIS231
+
+Quercetin, Phlorizin, and Chlorogenic acid form a notably similar
+interaction family around the central predicted pocket. They
+repeatedly contact the ASP188/ASP209/ASP210/ARG264/LYS266 axis.
+
+Procyanidin B2 shares some contacts, particularly ASN186 and
+ASP188, but does not reproduce the same persistent central
+ASP209/ASP210/ARG264 network in its best-pose family.
+
+The interaction topology therefore provides information that
+cannot be obtained from Vina affinity alone.
+
+======================================================================
+7. POSE STABILITY / INTERACTION PERSISTENCE
+======================================================================
+
+Quercetin:
+    Near-pose family showed a highly persistent interaction core,
+    especially ARG264, ASP188, ASP209, ASP210, and LYS266.
+
+Phlorizin:
+    Near-pose family showed very persistent central-pocket
+    interactions, including ASP188, ASP209, ASP210, ARG264,
+    and LYS266.
+
+Chlorogenic acid:
+    Near-pose family showed a broad and persistent network,
+    including ASP188, ASP209, ASP210, ARG264, LYS266, and
+    additional surrounding residues such as ASP191, ASP152,
+    HIS149, and THR215.
+
+Procyanidin B2:
+    Near-pose family was more variable and more peripheral,
+    with persistent contacts such as SER115, ASP188, ASN186,
+    GLY302, HIS149, and SER237, but weaker persistence in the
+    central ASP209/ASP210/ARG264 network.
+
+Overall structural interpretation:
+    Chlorogenic acid and Quercetin provide the clearest agreement
+    between good Vina score and repeated central-pocket contacts.
+    Phlorizin shows strong persistence of the same pocket but a
+    weaker score. Procyanidin B2 demonstrates that a favorable
+    Vina score does not necessarily correspond to the same
+    central-pocket interaction topology.
+
+======================================================================
+8. OVERALL FINAL CONCLUSION
+======================================================================
+
+The three stages of the docking training workflow produced a
+consistent and interpretable computational dataset.
+
+First, the initial Quercetin docking established the Vina workflow
+and produced a best affinity of -7.5 kcal/mol.
+
+Second, the focused-grid Quercetin docking again produced
+-7.5 kcal/mol. This provided a useful internal consistency check
+after refinement of the docking region.
+
+Third, the four-compound comparison produced the following best
+Vina affinities:
+
+    Chlorogenic acid   -7.7
+    Procyanidin B2     -7.6
+    Quercetin          -7.5
+    Phlorizin          -7.3 kcal/mol
+
+After interaction-network and near-pose persistence analysis, the
+interpretation becomes more nuanced than the simple score order.
+
+Chlorogenic acid currently provides the strongest overall
+computational signal because it combines the most negative Vina
+score with a persistent interaction network centered on multiple
+important pocket residues.
+
+Quercetin also shows a strong and highly persistent central-pocket
+interaction network, despite a slightly less favorable score.
+
+Phlorizin has the weakest numerical Vina score among the four,
+but its near-pose family maintains a strong and persistent network
+at the same central pocket. Its score therefore should not be
+interpreted as evidence that it fails to bind the pocket.
+
+Procyanidin B2 has a favorable Vina score close to chlorogenic
+acid, but its best-pose family is more peripheral and does not
+reproduce the same persistent central network observed for the
+other three compounds. This is an important example of why
+docking score alone is insufficient for biological interpretation.
+
+Therefore, the current data support the following preliminary
+computational hypothesis:
+
+    Chlorogenic acid:
+        strongest combined score + central interaction evidence
+
+    Quercetin:
+        strong central interaction evidence with a slightly less
+        favorable score
+
+    Phlorizin:
+        strong interaction persistence but weaker predicted score
+
+    Procyanidin B2:
+        favorable predicted score but a different, more peripheral
+        interaction pattern
+
+This is a docking-based hypothesis only. It does not establish
+experimental inhibition, binding affinity, enzymatic activity, or
+biological efficacy.
+
+======================================================================
+9. LIMITATIONS AND REQUIRED NEXT STEPS
+======================================================================
+
+Important limitations:
+
+1. AutoDock Vina affinity is a computational scoring estimate,
+   not an experimental binding free energy.
+
+2. The total difference among the four best scores is only
+   0.4 kcal/mol.
+
+3. Interaction assignments based on geometry are candidates and
+   require careful chemical validation before being called
+   definitive hydrogen bonds.
+
+4. Protein flexibility, receptor preparation, protonation states,
+   water molecules, and ligand conformational sampling can affect
+   docking outcomes.
+
+5. Procyanidin B2 is larger and more flexible than the other
+   compounds, which complicates direct score comparison.
+
+6. These results were obtained for a modeled PG1 structure and
+   should be treated as preliminary until further structural and
+   experimental validation is performed.
+
+Recommended next computational steps:
+
+    - Verify detailed donor/acceptor geometry for the strongest
+      interaction candidates.
+    - Perform visual 3D inspection of the main binding poses.
+    - Compare the ligand poses with the structurally supported
+      catalytic/active-site region.
+    - Consider repeated docking runs with independent random seeds
+      to assess robustness.
+    - Consider rescoring or molecular-dynamics-based refinement
+      for the most promising complexes.
+    - Compare the strongest compounds against additional PG
+      targets after the PG1 workflow is validated.
+
+======================================================================
+END OF FINAL LOG
+======================================================================

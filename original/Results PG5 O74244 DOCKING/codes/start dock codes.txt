@@ -1,0 +1,14 @@
+first dock (quercetin):
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PG5-O74244\PG5-O74244.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\quercetin.pdbqt" --center_x -0.52 --center_y -3.15 --center_z -8.91 --size_x 24 --size_y 24 --size_z 24 --exhaustiveness 16 --num_modes 10 --energy_range 4 --out "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\first dock\PG5_quercetin_out.pdbqt" --log "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\first dock\PG5_quercetin_log.txt"
+
+
+second dock (procyanidin_B2.pdbqt):
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PG5-O74244\PG5-O74244.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\procyanidin_B2.pdbqt" --center_x -0.52 --center_y -3.15 --center_z -8.91 --size_x 24 --size_y 24 --size_z 24 --exhaustiveness 16 --num_modes 10 --energy_range 4 --out "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\second dock\PG5_procyanidin_B2_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\second dock\PG5_procyanidin_B2_log.txt"
+
+
+third dock (phlorizin):
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PG5-O74244\PG5-O74244.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\phloridzin.pdbqt" --center_x -0.52 --center_y -3.15 --center_z -8.91 --size_x 24 --size_y 24 --size_z 24 --exhaustiveness 16 --num_modes 10 --energy_range 4 --out "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\third dock\PG5_phloridzin_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\third dock\PG5_phloridzin_log.txt"
+
+
+forth dock (chlorogenic_acid):
+vina --receptor "C:\Users\LINUX\Desktop\Docking\items\Proteins\PG5-O74244\PG5-O74244.pdbqt" --ligand "C:\Users\LINUX\Desktop\Docking\items\Ligands\pdbqt structure\chlorogenic_acid.pdbqt" --center_x -0.52 --center_y -3.15 --center_z -8.91 --size_x 24 --size_y 24 --size_z 24 --exhaustiveness 16 --num_modes 10 --energy_range 4 --out "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\forth dock\PG5_chlorogenic_acid_out.pdbqt" > "C:\Users\LINUX\Desktop\Docking\original\Results PG5 O74244 DOCKING\forth dock\PG5_chlorogenic_acid_log.txt"
