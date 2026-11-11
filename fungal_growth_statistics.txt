@@ -1,0 +1,53 @@
+Fungal growth measurements and statistical analysis
+
+Raw measurements
+The dataset contains seven treatment groups and three recorded measurements per group (21 observations in total).
+
+Treatment    Replicate 1    Replicate 2    Replicate 3    Mean
+Control      4.50           4.00           4.50           4.3333
+B100         1.10           0.90           0.90           0.9667
+B200         0.10           0.00           0.00           0.0333
+B500         0.00           0.00           0.00           0.0000
+B1000        0.00           0.00           0.00           0.0000
+A500         0.00           0.00           0.00           0.0000
+A1000        0.00           0.00           0.00           0.0000
+
+One-way ANOVA
+The one-way ANOVA was calculated from the 21 measurements above.
+
+Between-groups SS: 46.94952381
+Within-groups SS: 0.20000000
+Total SS: 47.14952381
+Between-groups df: 6
+Within-groups df: 14
+Total df: 20
+Between-groups MS: 7.824920635
+Within-groups MS: 0.014285714
+F: 547.744444
+p-value: 8.82961E-16
+F critical at alpha = 0.05: 2.847725996
+
+The p-value is below 0.05. The group means are therefore not all equal under this ANOVA model. ANOVA alone does not identify which pairs differ.
+
+Tukey HSD
+The supplied Tukey calculation used:
+Number of groups: 7
+Replicates per group: 3
+Error degrees of freedom: 14
+MSE: 0.014285714
+q critical: 4.82895
+HSD: 0.33323 cm
+
+Using this threshold, the control differs from each treatment, and B100 differs from B200 and from the four groups with zero recorded growth. The difference between B200 and the zero-growth groups is below the HSD threshold. The four zero-growth groups have identical recorded values.
+
+Kruskal-Wallis check
+A Kruskal-Wallis test on the same seven groups gives H = 18.5042 and p = 0.0050884. This is a non-parametric comparison of the group distributions.
+
+Notes and limitations
+There are three recorded observations per group. Several groups contain only zero values, and the residual normality assumption for ordinary ANOVA is not well supported by these data. The ANOVA result should therefore be read with this limitation in mind; the Kruskal-Wallis result is included as a supplementary check, not as a replacement for checking the experimental design.
+
+The labels A and B are retained exactly as supplied. Their meanings were not defined in the data provided.
+
+The measurements are recorded in cm. The table does not state whether these values are total colony diameters or growth values after subtracting the initial inoculum plug. No inhibition percentages are calculated here for that reason.
+
+The raw values are preserved as supplied. B200 is recorded as 0.10, 0.00 and 0.00 cm.
