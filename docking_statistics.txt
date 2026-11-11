@@ -1,0 +1,27 @@
+Docking score comparison
+
+Docking scores (kcal/mol)
+
+Compound              PG1       PG5       PGX4      PGX6
+Chlorogenic acid      -7.700    -8.059    -8.285    -8.456
+Phloridzin            -7.300    -8.412    -8.611    -9.248
+Quercetin             -7.500    -7.752    -8.158    -8.458
+Procyanidin B2        -7.600    -8.252    -7.769    -7.665
+
+Two-factor ANOVA without replication
+The 4 by 4 score matrix was entered into Excel's two-factor ANOVA without replication.
+
+Source       SS           df    MS           F          p-value
+Rows         0.717526188  3     0.239175396  1.7525059  0.225900903
+Columns      1.868931688  3     0.622977229  4.5647307  0.033087615
+Error        1.228286063  9     0.136476229
+Total        3.814743938  15
+
+At alpha = 0.05, the row effect is not statistically significant (p = 0.225900903), while the column effect is statistically significant in this model (p = 0.033087615).
+
+The row and column labels in the supplied Excel output correspond to compounds and protein targets, respectively. This is an exploratory analysis only.
+
+Important limitation
+There is one docking score for each compound-target pair. There are no independent replicate observations in this 4 by 4 matrix. The two-factor ANOVA without replication cannot estimate a separate compound-by-target interaction, and its error term does not represent independent experimental replication. Its p-values should not be treated as strong confirmatory evidence. The score matrix is primarily useful for descriptive comparison and ranking.
+
+The docking scores are computational estimates and do not by themselves demonstrate enzyme inhibition or biological activity.
